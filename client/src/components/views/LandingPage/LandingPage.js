@@ -1,0 +1,112 @@
+import React, { useEffect, useState, useRef } from 'react'
+import { Typography, Row, Button } from 'antd';
+import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from '../../Config'
+import MainImage from './Sections/MainImage'
+import GridCard from '../../commons/GridCards'
+import {Link} from "react-router-dom";
+import Axios from "axios";
+import { USER_SERVER } from '../../Config';
+
+const { Title } = Typography;
+function LandingPage() {
+
+
+    const [Movies, setMovies] = useState([])
+    const [MainMovieImage, setMainMovieImage] = useState(null)
+    const [role, setRole] = useState(-1);
+
+    // apparently useful?
+    Axios.defaults.withCredentials = true;
+    useEffect(() => {
+        const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+        fetchMovies(endpoint)
+
+        // test role
+        Axios.get(`${USER_SERVER}/auth`).then((response) => {
+            // this might not work, double check
+           if (response.data.role === undefined) {
+               alert("not logged in");
+           } else {
+               setRole(response.data.role);
+           }
+        })
+    }, [])
+    console.log("TESTS")
+
+    const fetchMovies = (endpoint) => {
+
+        fetch(endpoint)
+            .then(result => result.json())
+            .then(result => {
+                // console.log(result)
+                // console.log('Movies',...Movies)
+                // console.log('result',...result.results)
+                setMovies([...Movies, ...result.results])
+                setMainMovieImage(MainMovieImage || result.results[0])
+            })
+            .catch(error => console.error('Error:', error)
+            )
+    }
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleOnChange = (e) => {
+        setSearchTerm(e.target.value);
+    }
+
+    // if (role === -1) {
+    //     return <div>ROLE IS -1, MEANS WE ARE NOT LOGGED IN</div>
+    // }
+    //
+    // else {
+        return (
+            <div style={{width: '100%', margin: '0'}}>
+                <header>
+                    <input className="search"
+                           type="search"
+                           placeholder="Search..."
+                           value={searchTerm}
+                           onChange={handleOnChange}
+                    />
+                    {/* can't search with an empty search bar, so disabled = searchTerm.length === 0 */}
+                    <Link to={{
+                        pathname: `/searchpage/${searchTerm}`,
+                        state: {searchTerm: searchTerm}
+                    }} disabled={searchTerm.length === 0} className="btn btn-primary">SEARCH!</Link>
+                </header>
+                ${role}, NOTLOGGED(-1) / USER(0) / MODERATOR(1) / ADMIN(2)
+                {MainMovieImage &&
+                <MainImage
+                    image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}
+                    title={MainMovieImage.original_title}
+                    text={MainMovieImage.overview}
+                />
+
+                }
+
+                <div style={{width: '85%', margin: '1rem auto'}}>
+
+                    <Title level={2}> Movies by latest </Title>
+                    <hr/>
+                    <Row gutter={[16, 16]}>
+                        {Movies && Movies.map((movie, index) => (
+                            <React.Fragment key={index}>
+                                <GridCard
+                                    image={movie.poster_path ?
+                                        `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                                        : null}
+                                    movieId={movie.id}
+                                    movieName={movie.original_title}
+                                />
+                            </React.Fragment>
+                        ))}
+                    </Row>
+
+                </div>
+
+            </div>
+        )
+    // }
+}
+
+export default LandingPage
