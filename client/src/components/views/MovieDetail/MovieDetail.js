@@ -38,7 +38,7 @@ function MovieDetailPage(props) {
                 }
             })
 
-    }, [])
+    }, [CommentLists])
 
     const toggleActorView = () => {
         setActorToggle(!ActorToggle)
@@ -65,22 +65,6 @@ function MovieDetailPage(props) {
             })
             .catch(error => console.error('Error:', error)
             )
-    }
-
-    const updateComment = (newComment) => {
-        setCommentLists(CommentLists.concat(newComment))
-    }
-
-    const deleteComment = (commentID) => {
-        console.log("commentID: ",commentID)
-        alert(CommentLists)
-        // find or findIndex
-        let newCommentsLists = [...CommentLists]; // copying the old datas array
-
-        const changedIndex = CommentLists.findIndex(comment => comment._id === commentID)
-        // we had previously changed the comment content in the database, this will change the client's content
-        newCommentsLists[changedIndex].content = "COMMENT DELETED BY ADMIN";
-        setCommentLists(newCommentsLists)
     }
 
     const [role, setRole] = useState(-1);
@@ -154,7 +138,7 @@ function MovieDetailPage(props) {
                 </div>
 
                 {/* Comments */}
-                <Comments movieTitle={Movie.original_title} CommentLists={CommentLists} postId={movieId} refreshFunction={updateComment} deleteFunction={deleteComment} userRole={role}/>
+                <Comments movieTitle={Movie.original_title} CommentLists={CommentLists} postId={movieId} userRole={role}/>
 
             </div>
 

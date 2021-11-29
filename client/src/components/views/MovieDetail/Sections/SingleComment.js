@@ -26,16 +26,17 @@ function SingleComment(props) {
             postId: props.postId,
             responseTo: props.comment._id,
             content: CommentValue,
-            role: props.userRole
+            role: props.userRole,
+            isDeleted: false
         }
 
+        alert("Comment from SingleComment.js saved")
 
         Axios.post('/api/comment/saveComment', variables)
             .then(response => {
                 if (response.data.success) {
                     setCommentValue("")
                     setOpenReply(!OpenReply)
-                    props.refreshFunction(response.data.result)
                 } else {
                     alert('Failed to save Comment')
                 }
@@ -50,16 +51,16 @@ function SingleComment(props) {
             postId: props.postId,
             responseTo: props.comment._id,
             content: "COMMENT DELETED BY ADMIN",
-            role: props.userRole
+            role: props.userRole,
+            // No need to pass isDeleted: true (because isDeleted is changed in the server)
         }
 
         Axios.post('/api/comment/deleteComment', variables)
             .then(response => {
                 if (response.data.success) {
                     alert("comment successfully deleted");
-                    setCommentValue("")
+                    setCommentValue("") // should be able to delete this
                     console.log("ARTOSIS: ", response.data.comment._id);
-                    props.deleteFunction(response.data.comment._id) // communicates with MovieDetail deleteFunction method
                 } else {
                     alert('Failed to delete Comment');
                 }
@@ -67,7 +68,7 @@ function SingleComment(props) {
     }
 
     // if user is admin (ie props.userRole === 2), then they have the option to delete comments
-    const actions = (props.userRole === 2 ? [
+    let actions = (props.userRole === 2 ? [
         <LikeDislikes comment commentId={props.comment._id} userId={localStorage.getItem('userId')} />,
         <span onClick={openReply} key="comment-basic-reply-to">Reply to </span>,
         <span onClick={onDelete} key="delete-basic">DELETE (ADMIN ONLY)</span>
@@ -76,11 +77,20 @@ function SingleComment(props) {
         <span onClick={openReply} key="comment-basic-reply-to">Reply to </span>
     ])
 
+    // if admin deleted this comment, then we should not be able to upvote, downvote, reply, etc
+    if (props.comment.isDeleted) {
+        actions = null
+    }
+
+    console.log("props!", props.comment)
+
     const commentFlair = [
         props.comment.writer.name, // users are commentFlair[0]
         <span>{props.comment.writer.name} &#x2611; (moderator)</span>, // moderators are commentFlair[1]
         <span>{props.comment.writer.name} &#11088; (ADMIN)</span> // admins are commentFlair[2]
     ]
+
+
 
     // users get plain comments, moderators/admins get special comments
     // if props.comment.role == '0', they are a user

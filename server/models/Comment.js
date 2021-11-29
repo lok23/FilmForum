@@ -18,6 +18,9 @@ const commentSchema = mongoose.Schema({
     },
     role: {
         type: String
+    },
+    isDeleted: {
+        type: Boolean,
     }
 
 }, { timestamps: true })

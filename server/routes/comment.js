@@ -26,7 +26,7 @@ module.exports = (app) => {
         console.log(req.body);
         const theCommentID = req.body.responseTo
         console.log(theCommentID)
-        Comment.findByIdAndUpdate({'_id': theCommentID}, {content: "COMMENT DELETED BY ADMIN"}, (err, comment) => {
+        Comment.findByIdAndUpdate({'_id': theCommentID}, {content: "COMMENT DELETED BY ADMIN", isDeleted: true}, (err, comment) => {
             console.log("REEEEEEEEEEEE");
             if (err) return res.json({success: false, err})
             return res.status(200).json({success: true, comment})

@@ -27,15 +27,16 @@ function Comments(props) {
             content: Comment,
             writer: user.userData._id,
             postId: props.postId,
-            role: props.userRole
+            role: props.userRole,
+            isDeleted: false
         }
-        console.log(variables)
+
+        alert("Comment from Comments.js saved")
 
         axios.post('/api/comment/saveComment', variables)
             .then(response => {
                 if (response.data.success) {
                     setComment("")
-                    props.refreshFunction(response.data.result)
                 } else {
                     alert('Failed to save Comment')
                 }
@@ -53,8 +54,8 @@ function Comments(props) {
             {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
                     <React.Fragment>
-                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} deleteFunction={props.deleteFunction} userRole={props.userRole} />
-                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction} deleteFunction={props.deleteFunction} userRole={props.userRole}/>
+                        <SingleComment comment={comment} postId={props.postId} userRole={props.userRole} />
+                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} userRole={props.userRole}/>
                     </React.Fragment>
                 )
             ))}
