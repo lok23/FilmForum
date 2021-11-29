@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Comment, Avatar, Button, Input } from 'antd';
-import Axios from 'axios';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 import LikeDislikes from './LikeDislikes';
 import {USER_SERVER} from "../../../Config";
@@ -32,7 +32,7 @@ function SingleComment(props) {
 
         alert("Comment from SingleComment.js saved")
 
-        Axios.post('/api/comment/saveComment', variables)
+        axios.post('/api/comment/saveComment', variables)
             .then(response => {
                 if (response.data.success) {
                     setCommentValue("")
@@ -55,7 +55,7 @@ function SingleComment(props) {
             // No need to pass isDeleted: true (because isDeleted is changed in the server)
         }
 
-        Axios.post('/api/comment/deleteComment', variables)
+        axios.post('/api/comment/deleteComment', variables)
             .then(response => {
                 if (response.data.success) {
                     alert("comment successfully deleted");

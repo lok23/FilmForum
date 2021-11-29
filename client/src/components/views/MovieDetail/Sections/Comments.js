@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import SingleComment from './SingleComment';
 import ReplyComment from './ReplyComment';
-import Axios from "axios";
 import {API_KEY, API_URL, USER_SERVER} from "../../../Config";
 const { TextArea } = Input;
 const { Title } = Typography;

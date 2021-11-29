@@ -4,7 +4,7 @@ import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from '../..
 import MainImage from './Sections/MainImage'
 import GridCard from '../../commons/GridCards'
 import {Link} from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 import { USER_SERVER } from '../../Config';
 
 const { Title } = Typography;
@@ -16,13 +16,13 @@ function LandingPage() {
     const [role, setRole] = useState(-1);
 
     // apparently useful?
-    Axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true;
     useEffect(() => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
         fetchMovies(endpoint)
 
         // test role
-        Axios.get(`${USER_SERVER}/auth`).then((response) => {
+        axios.get(`${USER_SERVER}/auth`).then((response) => {
             // this might not work, double check
            if (response.data.role === undefined) {
                alert("not logged in");

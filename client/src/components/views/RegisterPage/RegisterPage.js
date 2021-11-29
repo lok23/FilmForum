@@ -10,6 +10,9 @@ import {
   Input,
   Button,
 } from 'antd';
+import axios from "axios";
+import {USER_SERVER} from "../../Config";
+import {REGISTER_USER} from "../../../_actions/types";
 
 const formItemLayout = {
   labelCol: {
@@ -83,7 +86,7 @@ function RegisterPage(props) {
             if (response.payload.success) {
               props.history.push("/login");
             } else {
-              alert(response.payload.err.errmsg)
+              alert(response.payload.err)
             }
           })
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Tooltip, Icon } from 'antd';
-import Axios from 'axios';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 function LikeDislikes(props) {
@@ -23,7 +23,7 @@ function LikeDislikes(props) {
 
     useEffect(() => {
 
-        Axios.post('/api/like/getLikes', variable)
+        axios.post('/api/like/getLikes', variable)
             .then(response => {
                 console.log('getLikes',response.data)
 
@@ -42,7 +42,7 @@ function LikeDislikes(props) {
                 }
             })
 
-        Axios.post('/api/like/getDislikes', variable)
+        axios.post('/api/like/getDislikes', variable)
             .then(response => {
                 console.log('getDislike',response.data)
                 if (response.data.success) {
@@ -71,7 +71,7 @@ function LikeDislikes(props) {
 
         if (LikeAction === null) {
 
-            Axios.post('/api/like/upLike', variable)
+            axios.post('/api/like/upLike', variable)
                 .then(response => {
                     if (response.data.success) {
 
@@ -94,7 +94,7 @@ function LikeDislikes(props) {
 
         } else {
 
-            Axios.post('/api/like/unLike', variable)
+            axios.post('/api/like/unLike', variable)
                 .then(response => {
                     if (response.data.success) {
 
@@ -119,7 +119,7 @@ function LikeDislikes(props) {
 
         if (DislikeAction !== null) {
 
-            Axios.post('/api/like/unDisLike', variable)
+            axios.post('/api/like/unDisLike', variable)
                 .then(response => {
                     if (response.data.success) {
 
@@ -133,7 +133,7 @@ function LikeDislikes(props) {
 
         } else {
 
-            Axios.post('/api/like/upDisLike', variable)
+            axios.post('/api/like/upDisLike', variable)
                 .then(response => {
                     if (response.data.success) {
 

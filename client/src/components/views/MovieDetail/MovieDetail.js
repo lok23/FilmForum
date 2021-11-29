@@ -9,7 +9,6 @@ import GridCards from '../../commons/GridCards';
 import MainImage from '../../views/LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
-import Axios from "axios";
 function MovieDetailPage(props) {
     const movieId = props.match.params.movieId
     const [Movie, setMovie] = useState([])
@@ -70,10 +69,10 @@ function MovieDetailPage(props) {
     const [role, setRole] = useState(-1);
 
     // apparently useful?
-    Axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true;
     useEffect(() => {
         // test role
-        Axios.get(`${USER_SERVER}/auth`).then((response) => {
+        axios.get(`${USER_SERVER}/auth`).then((response) => {
             // this might not work, double check
             if (response.data.role === undefined) {
                 alert("not logged in");

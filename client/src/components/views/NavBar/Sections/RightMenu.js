@@ -4,15 +4,17 @@ import { Menu } from 'antd';
 import axios from 'axios';
 import { USER_SERVER } from '../../../Config';
 import {Link, withRouter} from 'react-router-dom';
-import { useSelector } from "react-redux";
-const Upload = require('../../../../assets/images/upload.png');
+import {useDispatch, useSelector} from "react-redux";
+import {logoutUser, registerUser} from "../../../../_actions/user_actions";
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
+  const dispatch = useDispatch();
+
 
   const logoutHandler = () => {
-    axios.get(`${USER_SERVER}/logout`).then(response => {
-      if (response.status === 200) {
+    dispatch(logoutUser()).then(response => {
+      if (response.payload.success) {
         props.history.push("/login");
       } else {
         alert('Log Out Failed')
