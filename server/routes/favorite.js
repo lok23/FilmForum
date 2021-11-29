@@ -6,30 +6,39 @@ const { auth } = require("../middleware/auth");
 //=================================
 module.exports = (app) => {
     app.post("/api/favorite/favoriteNumber", (req, res) => {
+
+        // Find Favorite information inside Favorite collection by movieID
         Favorite.find({"movieId": req.body.movieId})
-            .exec((err, subscribe) => {
+            .exec((err, favorite) => {
                 if (err) return res.status(400).send(err)
 
-                res.status(200).json({success: true, subscribeNumber: subscribe.length})
+                res.status(200).json({success: true, favoriteNumber: favorite.length})
             })
     });
 
 
     app.post("/api/favorite/favorited", (req, res) => {
+
+        // Find Favorite information inside Favorite collection using movieId and userFrom
         Favorite.find({"movieId": req.body.movieId, "userFrom": req.body.userFrom})
-            .exec((err, subscribe) => {
+            .exec((err, favorite) => {
                 if (err) return res.status(400).send(err)
                 let result = false;
-                if (subscribe.length !== 0) {
+
+                // If I've already favorited this movie, I will have one object inside favorite
+                if (favorite.length !== 0) {
                     result = true
                 }
-                res.status(200).json({success: true, subcribed: result})
+                res.status(200).json({success: true, favorited: result})
             })
     });
 
 
     app.post("/api/favorite/addToFavorite", (req, res) => {
         console.log(req.body)
+
+        // We need to save information of the favoriteSchema (ie userFrom, movieID, etc)
+        // Look at /server/models/Favorite.js if you are confused
         const favorite = new Favorite(req.body);
         favorite.save((err, doc) => {
             if (err) return res.json({success: false, err})
@@ -48,7 +57,7 @@ module.exports = (app) => {
 
 
     app.post("/api/favorite/getFavoredMovie", (req, res) => {
-        //Need to find all of the users that I am subscribing to from subscriber collection
+        // Get everyone who has favorited this movie
         Favorite.find({'userFrom': req.body.userFrom})
             .exec((err, favorites) => {
                 if (err) return res.status(400).send(err);

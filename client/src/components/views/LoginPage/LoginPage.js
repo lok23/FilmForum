@@ -44,6 +44,8 @@ function LoginPage(props) {
 
           dispatch(loginUser(dataToSubmit))
             .then(response => {
+
+              // we set the localStorage here so that other pages know this person is logged in
               if (response.payload.loginSuccess) {
                 window.localStorage.setItem('userId', response.payload.userId);
                 if (rememberMe === true) {

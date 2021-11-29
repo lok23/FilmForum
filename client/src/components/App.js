@@ -16,11 +16,12 @@ function App() {
       <NavBar />
       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <Switch>
+            {/* reload means can anyone can go inside this page (null means yes)*/}
           <Route exact path="/" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/movie/:movieId" component={Auth(MovieDetail, null)} />
-          <Route exact path="/favorite" component={Auth(FavoritePage, null)} />
+          <Route exact path="/favorites" component={Auth(FavoritePage, null)} />
           <Route exact path="/searchpage/:page" component={Auth(SearchPage, null)}/>
         </Switch>
       </div>

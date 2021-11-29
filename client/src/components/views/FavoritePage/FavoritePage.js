@@ -12,6 +12,8 @@ function FavoritePage() {
 
     const [Favorites, setFavorites] = useState([])
     const [Loading, setLoading] = useState(true)
+
+    // localStorage stores even if browser is closed
     let variable = { userFrom: localStorage.getItem('userId') }
 
     useEffect(() => {
@@ -41,6 +43,8 @@ function FavoritePage() {
         axios.post('/api/favorite/removeFromFavorite', variables)
             .then(response => {
                 if (response.data.success) {
+                    // We need to call fetchFavoredMovie() again, otherwise we
+                    // will need to hit refresh button to see any changes
                     fetchFavoredMovie()
                 } else {
                     alert('Failed to Remove From Favorite')
@@ -50,10 +54,9 @@ function FavoritePage() {
 
 
     const renderCards = Favorites.map((favorite, index) => {
-
-
         const content = (
             <div>
+                {/* Not every movie has a poster, so we need the ternary operator to account for that */}
                 {favorite.moviePost ?
                     <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${favorite.moviePost}`} />
                     : "no image"}

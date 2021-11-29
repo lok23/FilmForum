@@ -3,7 +3,7 @@ import React from 'react';
 import { Menu } from 'antd';
 import axios from 'axios';
 import { USER_SERVER } from '../../../Config';
-import { withRouter } from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import { useSelector } from "react-redux";
 const Upload = require('../../../../assets/images/upload.png');
 
@@ -20,19 +20,21 @@ function RightMenu(props) {
     });
   };
 
+  // You will only see this if you are not logged in
   if (user.userData && !user.userData.isAuth) {
     return (
       <Menu mode={props.mode}>
         <Menu.Item key="mail">
-          <a href="/login">Signin</a>
+          <Link to="/login">Signin</Link>
         </Menu.Item>
         <Menu.Item key="app">
-          <a href="/register">Signup</a>
+          <Link to="/register">Signup</Link>
         </Menu.Item>
       </Menu>
     )
   } else {
-    return (
+      // You will only see this if you are logged in
+      return (
       <Menu mode={props.mode}>
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
