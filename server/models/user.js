@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
+// To understand bcrypt, watch this video
+// https://www.youtube.com/watch?v=NE9xJrPYWmc&t=16s
 const userSchema = mongoose.Schema({
     name: {
         type:String,
