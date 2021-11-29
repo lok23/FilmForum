@@ -66,6 +66,7 @@ function SingleComment(props) {
             })
     }
 
+    // if user is admin (ie props.userRole === 2), then they have the option to delete comments
     const actions = (props.userRole === 2 ? [
         <LikeDislikes comment commentId={props.comment._id} userId={localStorage.getItem('userId')} />,
         <span onClick={openReply} key="comment-basic-reply-to">Reply to </span>,
@@ -75,118 +76,50 @@ function SingleComment(props) {
         <span onClick={openReply} key="comment-basic-reply-to">Reply to </span>
     ])
 
+    const commentFlair = [
+        props.comment.writer.name, // users are commentFlair[0]
+        <span>{props.comment.writer.name} &#x2611; (moderator)</span>, // moderators are commentFlair[1]
+        <span>{props.comment.writer.name} &#11088; (ADMIN)</span> // admins are commentFlair[2]
+    ]
 
     // users get plain comments, moderators/admins get special comments
-    if (props.comment.role === '0') {
-        return (
-            <div>
-                <Comment
-                    actions={actions}
-                    author={props.comment.writer.name}
-                    avatar={
-                        <Avatar
-                            src={props.comment.writer.image}
-                            alt="image"
-                        />
-                    }
-                    content={
-                        <p>
-                            {props.comment.content}
-                        </p>
-                    }
-                ></Comment>
-
-
-                {OpenReply &&
-                <form style={{display: 'flex'}} onSubmit={onSubmit}>
-                    <TextArea
-                        style={{width: '100%', borderRadius: '5px'}}
-                        onChange={handleChange}
-                        value={CommentValue}
-                        placeholder="write some comments"
+    // if props.comment.role == '0', they are a user
+    // if props.comment.role == '1', they are a moderator
+    // if props.comment.role == '2', they are an admin
+    return (
+        <div>
+            <Comment
+                actions={actions}
+                author={commentFlair[props.comment.role]}
+                avatar={
+                    <Avatar
+                        src={props.comment.writer.image}
+                        alt="image"
                     />
-                    <br/>
-                    <Button style={{width: '20%', height: '52px'}} onClick={onSubmit}>Submit</Button>
-                </form>
                 }
-
-            </div>
-        )
-    }
-    // moderators are "1"
-    else if (props.comment.role === '1') {
-        return (
-            <div>
-                <Comment
-                    actions={actions}
-                    author={<span>{props.comment.writer.name} &#x2611; (moderator)</span>}
-                    avatar={
-                        <Avatar
-                            src={props.comment.writer.image}
-                            alt="image"
-                        />
-                    }
-                    content={
-                        <p>
-                            {props.comment.content}
-                        </p>
-                    }
-                ></Comment>
-
-
-                {OpenReply &&
-                <form style={{display: 'flex'}} onSubmit={onSubmit}>
-                    <TextArea
-                        style={{width: '100%', borderRadius: '5px'}}
-                        onChange={handleChange}
-                        value={CommentValue}
-                        placeholder="reply to this comment"
-                    />
-                    <br/>
-                    <Button style={{width: '20%', height: '52px'}} onClick={onSubmit}>Submit</Button>
-                </form>
+                content={
+                    <p>
+                        {props.comment.content}
+                    </p>
                 }
-
-            </div>
-        )
-    }
-    // admins are '2' aka else
-    else {
-        return (
-            <div>
-                <Comment
-                    actions={actions}
-                    author={<span>{props.comment.writer.name} &#11088; (ADMIN)</span>}
-                    avatar={
-                        <Avatar
-                            src={props.comment.writer.image}
-                            alt="image"
-                        />
-                    }
-                    content={
-                        <p>
-                            {props.comment.content}
-                        </p>
-                    }
-                ></Comment>
+            ></Comment>
 
 
-                {OpenReply &&
-                <form style={{display: 'flex'}} onSubmit={onSubmit}>
-                    <TextArea
-                        style={{width: '100%', borderRadius: '5px'}}
-                        onChange={handleChange}
-                        value={CommentValue}
-                        placeholder="reply to this comment"
-                    />
-                    <br/>
-                    <Button style={{width: '20%', height: '52px'}} onClick={onSubmit}>Submit</Button>
-                </form>
-                }
+            {OpenReply &&
+            <form style={{display: 'flex'}} onSubmit={onSubmit}>
+                <TextArea
+                    style={{width: '100%', borderRadius: '5px'}}
+                    onChange={handleChange}
+                    value={CommentValue}
+                    placeholder="write some comments"
+                />
+                <br/>
+                <Button style={{width: '20%', height: '52px'}} onClick={onSubmit}>Submit</Button>
+            </form>
+            }
 
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default SingleComment
