@@ -38,7 +38,7 @@ function MovieDetailPage(props) {
                 }
             })
 
-    }, [CommentLists])
+    }, [CommentLists]) // Whenever we modify CommentLists we need to re-render the page
 
     const toggleActorView = () => {
         setActorToggle(!ActorToggle)

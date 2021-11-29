@@ -12,8 +12,8 @@ import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
-
 ReactDOM.render(
+    // window.__REDUX... is used so we can look at redux devtools in the browser
     <Provider
         store={createStoreWithMiddleware(
             Reducer,

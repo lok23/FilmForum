@@ -5,13 +5,13 @@ import {
     LOGOUT_USER,
 } from '../_actions/types';
  
-
+// reducers are where the state is modified
 export default function(state={},action){
     switch(action.type){
         case REGISTER_USER:
             return {...state, register: action.payload }
         case LOGIN_USER:
-            return { ...state, loginSucces: action.payload }
+            return { ...state, loginSuccess: action.payload }
         case AUTH_USER:
             return {...state, userData: action.payload }
         case LOGOUT_USER:
