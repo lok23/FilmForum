@@ -22,6 +22,16 @@ export function loginUser(dataToSubmit){
     }
 }
 
+export function saveProfile(dataToSubmit) {
+    const request = axios.post(`${USER_SERVER}/saveProfile`, dataToSubmit)
+        .then(response => response.data);
+
+    return {
+        type: 'profile_user',
+        payload: request
+    }
+}
+
 export function auth(){
     const request = axios.get(`${USER_SERVER}/auth`)
     .then(response => response.data);
@@ -41,3 +51,4 @@ export function logoutUser(){
         payload: request
     }
 }
+

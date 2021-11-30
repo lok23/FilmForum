@@ -7,6 +7,8 @@ const user = (state={},action) => {
             return { ...state, loginSuccess: action.payload }
         case 'auth_user':
             return {...state, userData: action.payload }
+        case 'profile_user':
+            return {...state, userData: action.payload }
         case 'logout_user':
             return {...state }
         default:

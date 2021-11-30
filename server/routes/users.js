@@ -29,6 +29,17 @@ module.exports = (app) => {
         });
     });
 
+    app.post("/api/users/saveProfile", auth, (req, res) => {
+        User.findOneAndUpdate({_id: req.body._id}, {name: req.body.name, role: req.body.role},  (err, doc) => {
+            console.log(req.user)
+            console.log(req.body)
+            if (err) return res.json({success: false, err});
+            return res.status(200).send({
+                success: true
+            });
+        });
+    });
+
     app.post("/api/users/login", (req, res) => {
         User.findOne({email: req.body.email}, (err, user) => {
             if (!user)

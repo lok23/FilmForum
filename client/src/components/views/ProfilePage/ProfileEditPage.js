@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {USER_SERVER} from "../../Config";
+import {registerUser, saveProfile} from "../../../_actions/user_actions";
 
 function ProfileEditPage() {
 
+    const dispatch = useDispatch()
+
     const [name, setName] = useState();
     const [role, setRole] = useState();
+    const [_id, setId] = useState();
 
     console.log("role: ", role);
 
@@ -21,6 +25,7 @@ function ProfileEditPage() {
             } else {
                 setName(response.data.name)
                 setRole(response.data.role)
+                setId(response.data._id)
             }
         })
     }, [])
@@ -31,8 +36,20 @@ function ProfileEditPage() {
         setName(newName);
     }
 
-    function saveProfile() {
-
+    function onSave() {
+        let dataToSubmit = {
+            _id: _id,
+            name: name,
+            role: role
+        }
+        console.log(dataToSubmit)
+        dispatch(saveProfile(dataToSubmit)).then(response => {
+            if (response.payload.success) {
+                alert("profile saved!")
+            } else {
+                alert(response.payload.err)
+            }
+        })
     }
 
     return (
@@ -88,7 +105,7 @@ function ProfileEditPage() {
                 </label>
             </div>
             <Link to="/profile">
-                <button onClick={saveProfile}>Save</button>
+                <button onClick={onSave}>Save</button>
             </Link>
         </div>
     );
