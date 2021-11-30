@@ -12,7 +12,6 @@ import {
 } from 'antd';
 import axios from "axios";
 import {USER_SERVER} from "../../Config";
-import {REGISTER_USER} from "../../../_actions/types";
 
 const formItemLayout = {
   labelCol: {

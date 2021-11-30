@@ -1,10 +1,5 @@
 import axios from 'axios';
-import {
-    LOGIN_USER,
-    REGISTER_USER,
-    AUTH_USER,
-    LOGOUT_USER,
-} from './types';
+
 import { USER_SERVER } from '../components/Config.js';
 
 export function registerUser(dataToSubmit){
@@ -12,7 +7,7 @@ export function registerUser(dataToSubmit){
         .then(response => response.data);
     
     return {
-        type: REGISTER_USER,
+        type: 'register_user',
         payload: request
     }
 }
@@ -22,7 +17,7 @@ export function loginUser(dataToSubmit){
                 .then(response => response.data);
 
     return {
-        type: LOGIN_USER,
+        type: 'login_user',
         payload: request
     }
 }
@@ -32,7 +27,7 @@ export function auth(){
     .then(response => response.data);
 
     return {
-        type: AUTH_USER,
+        type: 'auth_user',
         payload: request
     }
 }
@@ -42,7 +37,7 @@ export function logoutUser(){
     .then(response => response.data);
 
     return {
-        type: LOGOUT_USER,
+        type: 'logout_user',
         payload: request
     }
 }

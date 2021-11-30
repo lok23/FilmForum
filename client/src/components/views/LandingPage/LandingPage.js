@@ -1,13 +1,15 @@
+import './LandingPageStyle.css'
 import React, { useEffect, useState, useRef } from 'react'
-import { Typography, Row, Button } from 'antd';
+import {Typography, Row, Col, Divider} from 'antd';
 import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from '../../Config'
 import MainImage from './Sections/MainImage'
 import GridCard from '../../commons/GridCards'
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { USER_SERVER } from '../../Config';
-
+import ProfilePage from "../ProfilePage/ProfilePage";
 const { Title } = Typography;
+
 function LandingPage() {
 
 
@@ -54,14 +56,10 @@ function LandingPage() {
         setSearchTerm(e.target.value);
     }
 
-    // if (role === -1) {
-    //     return <div>ROLE IS -1, MEANS WE ARE NOT LOGGED IN</div>
-    // }
-    //
-    // else {
-        return (
-            <div style={{width: '100%', margin: '0'}}>
-                <header>
+    return (
+        <div style={{width: '100%', margin: '0'}}>
+            <header className="container">
+                <div>
                     <input className="search"
                            type="search"
                            placeholder="Search..."
@@ -72,41 +70,51 @@ function LandingPage() {
                     <Link to={{
                         pathname: `/searchpage/${searchTerm}`,
                         state: {searchTerm: searchTerm}
-                    }} disabled={searchTerm.length === 0} className="btn btn-primary">SEARCH!</Link>
-                </header>
-                ${role}, NOTLOGGED(-1) / USER(0) / MODERATOR(1) / ADMIN(2)
-                {MainMovieImage &&
-                <MainImage
-                    image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}
-                    title={MainMovieImage.original_title}
-                    text={MainMovieImage.overview}
-                />
-
-                }
-
-                <div style={{width: '85%', margin: '1rem auto'}}>
-
-                    <Title level={2}> Movies by latest </Title>
-                    <hr/>
-                    <Row gutter={[16, 16]}>
-                        {Movies && Movies.map((movie, index) => (
-                            <React.Fragment key={index}>
-                                <GridCard
-                                    image={movie.poster_path ?
-                                        `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-                                        : null}
-                                    movieId={movie.id}
-                                    movieName={movie.original_title}
-                                />
-                            </React.Fragment>
-                        ))}
-                    </Row>
-
+                    }} disabled={searchTerm.length === 0} className="btn btn-primary">SEARCH!
+                    </Link>
                 </div>
+                {/* hide profile option if not logged in */}
+                {role === -1 ?
+                    <div></div>
+                    :
+                    <Link to={{
+                        pathname: `/profile`
+                    }} className="btn btn-primary">PROFILE
+                    </Link>
+                }
+            </header>
+            ${role}, NOTLOGGED(-1) / USER(0) / MODERATOR(1) / ADMIN(2)
+            {MainMovieImage &&
+            <MainImage
+                image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}
+                title={MainMovieImage.original_title}
+                text={MainMovieImage.overview}
+            />
+
+            }
+
+            <div style={{width: '85%', margin: '1rem auto'}}>
+
+                <Title level={2}> Movies by latest </Title>
+                <hr/>
+                <Row gutter={[16, 16]}>
+                    {Movies && Movies.map((movie, index) => (
+                        <React.Fragment key={index}>
+                            <GridCard
+                                image={movie.poster_path ?
+                                    `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                                    : null}
+                                movieId={movie.id}
+                                movieName={movie.original_title}
+                            />
+                        </React.Fragment>
+                    ))}
+                </Row>
 
             </div>
-        )
-    // }
+
+        </div>
+    )
 }
 
 export default LandingPage

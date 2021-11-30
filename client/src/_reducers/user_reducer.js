@@ -1,22 +1,17 @@
-import {
-    LOGIN_USER,
-    REGISTER_USER,
-    AUTH_USER,
-    LOGOUT_USER,
-} from '../_actions/types';
- 
 // reducers are where the state is modified
-export default function(state={},action){
+const user = (state={},action) => {
     switch(action.type){
-        case REGISTER_USER:
+        case 'register_user':
             return {...state, register: action.payload }
-        case LOGIN_USER:
+        case 'login_user':
             return { ...state, loginSuccess: action.payload }
-        case AUTH_USER:
+        case 'auth_user':
             return {...state, userData: action.payload }
-        case LOGOUT_USER:
+        case 'logout_user':
             return {...state }
         default:
             return state;
     }
 }
+
+export default user;
