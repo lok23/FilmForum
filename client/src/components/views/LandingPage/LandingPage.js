@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import { USER_SERVER } from '../../Config';
 import ProfilePage from "../ProfilePage/ProfilePage";
+import OtherUserList from "./Sections/OtherUserList";
 const { Title } = Typography;
 
 function LandingPage() {
@@ -92,6 +93,8 @@ function LandingPage() {
             />
 
             }
+
+            <OtherUserList/>
 
             <div style={{width: '85%', margin: '1rem auto'}}>
 
