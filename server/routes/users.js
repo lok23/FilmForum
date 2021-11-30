@@ -19,6 +19,13 @@ module.exports = (app) => {
         });
     });
 
+    app.get("/api/users/allUsers", (req, res) => {
+        console.log(User.find())
+        User.find({}).then(function (users) {
+            res.send(users);
+        });
+    });
+
     app.post("/api/users/register", (req, res) => {
         const user = new User(req.body);
         console.log(req.body);

@@ -4,13 +4,15 @@ import { Card, Avatar, Col, Typography, Row } from 'antd';
 
 function OtherUserItem(props) {
 
+    console.log("OtherUserItem props: ", props)
+
     return (
         <Col key={props.index} lg={6} md={8} xs={24}>
             <div style={{ position: 'relative' }}>
                 {/* take us to the moviedetail page */}
-                {/*<a href={`/movie/${movieId}`} >*/}
-                    {props.user}
-                {/*</a>*/}
+                <a href={`/profile/${props.user.email}`} >
+                    {props.user.email}
+                </a>
             </div>
         </Col>
     )

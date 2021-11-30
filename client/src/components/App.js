@@ -13,6 +13,7 @@ import FavoritePage from "./views/FavoritePage/FavoritePage"
 import SearchPage from "./views/SearchPage/SearchPage";
 import ProfilePage from "./views/ProfilePage/ProfilePage";
 import ProfileEditPage from "./views/ProfilePage/ProfileEditPage";
+import OtherProfilePage from "./views/ProfilePage/OtherProfilePage";
 function App() {
   return (
     <Suspense fallback={(<div>Loading...</div>)}>
@@ -27,8 +28,7 @@ function App() {
           <Route exact path="/searchpage/:page" component={Auth(SearchPage, null)}/>
           <Route exact path="/profile/" component={Auth(ProfilePage, null)}/>
           <Route exact path="/profileEdit/" component={Auth(ProfileEditPage, null)}/>
-
-            {/*<Route exact path="/profile/:user" component={Auth(OtherProfilePage, null)}/>*/}
+          <Route exact path="/profile/:user" component={Auth(OtherProfilePage, null)}/>
 
         </Switch>
       </div>
