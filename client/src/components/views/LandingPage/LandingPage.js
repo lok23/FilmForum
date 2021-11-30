@@ -62,7 +62,7 @@ function LandingPage() {
                 <div>
                     <input className="search"
                            type="search"
-                           placeholder="Search..."
+                           placeholder="Search Movies..."
                            value={searchTerm}
                            onChange={handleOnChange}
                     />
