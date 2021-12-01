@@ -3,7 +3,7 @@ import { auth } from '../_actions/user_actions';
 import { useSelector, useDispatch } from "react-redux";
 
 // We need middleware so we can return functions
-export default function (ComposedClass, reload, adminRoute = null) {
+export default function (ComposedClass, reload) {
     function AuthenticationCheck(props) {
 
         let user = useSelector(state => state.user);
@@ -13,24 +13,19 @@ export default function (ComposedClass, reload, adminRoute = null) {
             // To know my current status, send auth request
             dispatch(auth()).then(async response => {
                 // Not logged in Status
-                if (await !response.payload.isAuth) {
+                if (!response.payload.isAuth) {
                     if (reload) {
                         props.history.push('/register_login')
                     }
                     //Loggined in Status
                 } else {
-                    if (adminRoute && !response.payload.isAdmin) {
+                    if (reload === false) {
                         props.history.push('/')
-                    }
-                    else {
-                        if (reload === false) {
-                            props.history.push('/')
-                        }
                     }
                 }
             })
             
-        }, [dispatch, props.history, user.googleAuth])
+        }, [dispatch, props.history])
 
         return (
             <ComposedClass {...props} user={user} />
