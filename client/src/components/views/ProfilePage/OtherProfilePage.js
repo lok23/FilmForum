@@ -2,31 +2,37 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {USER_SERVER} from "../../Config";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
-function OtherProfilePage() {
+// Only make the request if the property user in userData is defined.
+// https://stackoverflow.com/questions/65980922/react-on-page-reload-receive-error-typeerror-cannot-read-property-x-of-undefi
+function OtherProfilePage(props) {
 
-    // wanted to use useSelector, but it's too fast and as a result user is undefined. :(
-    // const user = useSelector(state => state.user)
+    const user = useSelector(state => state.user)
 
-    // our work-around solution
+    console.log("props: ", props)
+    console.log("props.location.state", props.location.state)
+
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [role, setRole] = useState("");
     // apparently useful?
     axios.defaults.withCredentials = true;
     useEffect(() => {
-        // test role
-        axios.get(`${USER_SERVER}/auth`).then((response) => {
-            // this might not work, double check
-            if (response.data.role === undefined) {
-                alert("not logged in");
-            } else {
-                setEmail(response.data.email)
-                setName(response.data.name)
-                setRole(response.data.role)
-            }
-        })
-    }, [])
+        // if logged in
+        if (user.userData) {
+            axios.get(`${USER_SERVER}/peepee/${props.location.state}`).then((response) => {
+                console.log("response: ", response)
+                if (response === undefined) {
+                    alert("that profile doesn't exist!");
+                } else {
+                    setEmail(response.data.email)
+                    setName(response.data.name)
+                    setRole(response.data.role)
+                }
+            })
+        }
+    }, )
 
     // should refactor this lazy code as soon as possible
     let actualRole = "unknown";
@@ -38,12 +44,31 @@ function OtherProfilePage() {
         actualRole = "admin"
     }
 
+    console.log("user.userData: ", user.userData)
+    console.log(email)
+
+    // if (user.userData.email !== email) {
+    //     return (
+    //         <div>
+    //             click here to go to your own profile!
+    //         </div>
+    //     )
+    // }
+
     return (
         <div>
-            Someone else's profile!
+            {user.userData.email === email ?
+                <div>
+                    click here go to your profile!
+                </div>
+                :
+            <div>
+            Someone elses profile!
             <p>email: {email}</p>
             <p>name: {name}</p>
             <p>role: {actualRole}</p>
+            </div>
+                }
         </div>
     );
 }

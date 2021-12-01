@@ -13,6 +13,7 @@ function RightMenu(props) {
 
 
   const logoutHandler = () => {
+      console.log("user: ", user)
     dispatch(logoutUser()).then(response => {
       if (response.payload.success) {
         props.history.push("/login");

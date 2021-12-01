@@ -20,6 +20,8 @@ function FavoritePage() {
         fetchFavoredMovie()
     }, [])
 
+    console.log(user)
+
     const fetchFavoredMovie = () => {
         axios.post('/api/favorite/getFavoredMovie', variable)
             .then(response => {

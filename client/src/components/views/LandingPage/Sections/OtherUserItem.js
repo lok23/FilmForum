@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Avatar, Col, Typography, Row } from 'antd';
+import {Link} from "react-router-dom";
 
 
 function OtherUserItem(props) {
@@ -9,14 +10,15 @@ function OtherUserItem(props) {
     return (
         <Col key={props.index} lg={6} md={8} xs={24}>
             <div style={{ position: 'relative' }}>
-                {/* take us to the moviedetail page */}
-                <a href={`/profile/${props.user.email}`} >
+                {/* take us to the OtherProfilePage */}
+                <Link to={{
+                    pathname: `/profile/${props.user.email}`,
+                    state: props.user.email}} >
                     {props.user.email}
-                </a>
+                </Link>
             </div>
         </Col>
     )
-
 
 }
 

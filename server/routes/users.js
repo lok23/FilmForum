@@ -26,6 +26,18 @@ module.exports = (app) => {
         });
     });
 
+    // this returns a lot of information, maybe it should return only the important parts?
+    app.get("/api/users/peepee/:profileIDByEmail", (req, res) => {
+        // console.log("1st: ", User.find({email: "admin@gmail.com"}))
+        // console.log("2nd: ", User.find({email: req.params.profileIDByEmail}))
+        console.log (req.params.profileIDByEmail)
+        User.findOne({email: req.params.profileIDByEmail}, (err, doc) => {
+            if (err) return res.json({success: false, err});
+            console.log("3rd: ", doc)
+            res.json(doc)
+        })
+    });
+
     app.post("/api/users/register", (req, res) => {
         const user = new User(req.body);
         console.log(req.body);
@@ -75,6 +87,9 @@ module.exports = (app) => {
     });
 
     app.get("/api/users/logout", auth, (req, res) => {
+        console.log("req: ", req)
+        console.log("req.user: ", req.user)
+        console.log("req.user._id: ", req.user._id)
         User.findOneAndUpdate({_id: req.user._id}, {token: "", tokenExp: ""}, (err, doc) => {
             if (err) return res.json({success: false, err});
             return res.status(200).send({
