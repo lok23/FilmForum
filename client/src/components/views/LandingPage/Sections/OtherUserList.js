@@ -23,8 +23,7 @@ function OtherUserList(props) {
     }
 
     return (
-        <div style={{width: '85%', margin: '1rem auto'}}>
-
+        <div>
             <Title level={2}> Newest Users! (Click to view their user profile)</Title>
             <hr/>
             <Row gutter={[16, 16]}>
@@ -34,7 +33,7 @@ function OtherUserList(props) {
                     </React.Fragment>
                 ))}
             </Row>
-
+            <br/>
         </div>
     )
 }

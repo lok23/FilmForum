@@ -9,10 +9,11 @@ import axios from "axios";
 import { USER_SERVER } from '../../Config';
 import ProfilePage from "../ProfilePage/ProfilePage";
 import OtherUserList from "./Sections/OtherUserList";
+import NavBar from "../NavBar/NavBar";
+import RightMenu from "../NavBar/Sections/RightMenu";
 const { Title } = Typography;
 
 function LandingPage() {
-
 
     const [Movies, setMovies] = useState([])
     const [MainMovieImage, setMainMovieImage] = useState(null)
@@ -58,8 +59,8 @@ function LandingPage() {
     }
 
     return (
-        <div style={{width: '100%', margin: '0'}}>
-            <header className="container">
+        <div className="container">
+            <header className="header">
                 <div>
                     <input className="search"
                            type="search"
@@ -74,7 +75,7 @@ function LandingPage() {
                     }} disabled={searchTerm.length === 0} className="btn btn-primary">SEARCH!
                     </Link>
                 </div>
-                {/* hide profile option if not logged in */}
+                {/* hide profile option if not logged in, empty <div></div> is intentional. */}
                 {role === -1 ?
                     <div></div>
                     :
@@ -94,15 +95,13 @@ function LandingPage() {
 
             }
 
-            <OtherUserList/>
-
-            <div style={{width: '85%', margin: '1rem auto'}}>
-
+            <div className="inner-container">
+                <OtherUserList/>
                 <Title level={2}> Movies by latest </Title>
                 <hr/>
                 <Row gutter={[16, 16]}>
                     {Movies && Movies.map((movie, index) => (
-                        <React.Fragment key={index}>
+                        <div key={index}>
                             <GridCard
                                 image={movie.poster_path ?
                                     `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
@@ -110,7 +109,7 @@ function LandingPage() {
                                 movieId={movie.id}
                                 movieName={movie.original_title}
                             />
-                        </React.Fragment>
+                        </div>
                     ))}
                 </Row>
 
