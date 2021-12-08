@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import OtherUserItem from "./OtherUserItem";
 import {Row} from "antd";
-import GridCard from "../../../commons/GridCards";
 import {IMAGE_BASE_URL, POSTER_SIZE} from "../../../Config";
 import Title from "antd/es/typography/Title";
 import axios from "axios";

@@ -5,10 +5,10 @@ import axios from 'axios';
 import Comments from './Sections/Comments'
 import LikeDislikes from './Sections/LikeDislikes';
 import {API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, USER_SERVER} from '../../Config'
-import GridCards from '../../commons/GridCards';
 import MainImage from '../../views/LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
+import ActorCards from "../../cards/ActorCards";
 function MovieDetailPage(props) {
     const movieId = props.match.params.movieId
     const [Movie, setMovie] = useState([])
@@ -124,7 +124,7 @@ function MovieDetailPage(props) {
                         {
                             !LoadingForCasts ? Casts.map((cast, index) => (
                                 cast.profile_path &&
-                                <GridCards actor image={cast.profile_path} characterName={cast.characterName} />
+                                <ActorCards image={cast.profile_path} characterName={cast.characterName} />
                             )) :
                                 <div>loading...</div>
                         }

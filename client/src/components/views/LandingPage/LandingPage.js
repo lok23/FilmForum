@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from 'react'
 import {Typography, Row, Col, Divider} from 'antd';
 import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from '../../Config'
 import MainImage from './Sections/MainImage'
-import GridCard from '../../commons/GridCards'
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { USER_SERVER } from '../../Config';
@@ -11,6 +10,7 @@ import ProfilePage from "../ProfilePage/ProfilePage";
 import OtherUserList from "./Sections/OtherUserList";
 import NavBar from "../NavBar/NavBar";
 import RightMenu from "../NavBar/Sections/RightMenu";
+import MovieCards from "../../cards/MovieCards";
 const { Title } = Typography;
 
 function LandingPage() {
@@ -102,7 +102,7 @@ function LandingPage() {
                 <Row gutter={[16, 16]}>
                     {Movies && Movies.map((movie, index) => (
                         <div key={index}>
-                            <GridCard
+                            <MovieCards
                                 image={movie.poster_path ?
                                     `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
                                     : null}

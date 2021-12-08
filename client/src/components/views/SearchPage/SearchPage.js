@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Typography, Row, Button } from 'antd';
 import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from '../../Config'
-import GridCard from '../../commons/GridCards'
 import {Link, useLocation} from "react-router-dom";
+import MovieCards from "../../cards/MovieCards";
 const { Title } = Typography;
 function SearchPage() {
 
@@ -44,7 +44,7 @@ function SearchPage() {
                     <Row gutter={[16, 16]}>
                         {Movies && Movies.map((movie, index) => (
                             <React.Fragment key={index}>
-                                <GridCard
+                                <MovieCards
                                     image={movie.poster_path ?
                                         `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
                                         : NO_IMG}
