@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Avatar, Col, Typography, Row } from 'antd';
 import { IMAGE_BASE_URL } from '../Config';
 
-function ActorCards(props) {
+const ActorCards = (props) => {
 
     let { key, image, characterName } = props
     const POSTER_SIZE = "w154";

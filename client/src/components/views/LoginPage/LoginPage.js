@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 
 const { Title } = Typography;
 
-function LoginPage(props) {
+const LoginPage = (props) => {
   const dispatch = useDispatch();
 
   const [formErrorMessage, setFormErrorMessage] = useState('')

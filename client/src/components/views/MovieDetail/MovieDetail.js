@@ -9,7 +9,9 @@ import MainImage from '../../views/LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
 import ActorCards from "../../cards/ActorCards";
-function MovieDetailPage(props) {
+
+
+const MovieDetailPage = (props) => {
     const movieId = props.match.params.movieId
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])

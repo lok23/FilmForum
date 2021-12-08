@@ -3,7 +3,7 @@ import { Card, Avatar, Col, Typography, Row } from 'antd';
 import {Link} from "react-router-dom";
 
 
-function OtherUserItem(props) {
+const OtherUserItem = (props) => {
 
     console.log("OtherUserItem props: ", props)
 

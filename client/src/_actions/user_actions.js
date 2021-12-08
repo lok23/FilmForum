@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { USER_SERVER } from '../components/Config.js';
 
-export function registerUser(dataToSubmit){
+export const registerUser = (dataToSubmit) => {
     const request = axios.post(`${USER_SERVER}/register`,dataToSubmit)
         .then(response => response.data);
     
@@ -12,7 +12,7 @@ export function registerUser(dataToSubmit){
     }
 }
 
-export function loginUser(dataToSubmit){
+export const loginUser = (dataToSubmit) => {
     const request = axios.post(`${USER_SERVER}/login`,dataToSubmit)
                 .then(response => response.data);
 
@@ -22,7 +22,7 @@ export function loginUser(dataToSubmit){
     }
 }
 
-export function saveProfile(dataToSubmit) {
+export const saveProfile = (dataToSubmit) => {
     const request = axios.post(`${USER_SERVER}/saveProfile`, dataToSubmit)
         .then(response => response.data);
 
@@ -32,7 +32,7 @@ export function saveProfile(dataToSubmit) {
     }
 }
 
-export function auth(){
+export const auth = () => {
     const request = axios.get(`${USER_SERVER}/auth`)
     .then(response => response.data);
 
@@ -42,7 +42,7 @@ export function auth(){
     }
 }
 
-export function logoutUser(){
+export const logoutUser = () => {
     const request = axios.get(`${USER_SERVER}/logout`)
     .then(response => response.data);
 

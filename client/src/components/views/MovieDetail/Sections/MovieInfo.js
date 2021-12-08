@@ -1,7 +1,7 @@
 import React from 'react'
 import { Descriptions, Badge } from 'antd';
 
-function MovieInfo(props) {
+const MovieInfo = (props) => {
 
     const { movie } = props;
     

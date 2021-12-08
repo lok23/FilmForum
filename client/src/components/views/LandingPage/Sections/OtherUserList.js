@@ -5,7 +5,7 @@ import {IMAGE_BASE_URL, POSTER_SIZE} from "../../../Config";
 import Title from "antd/es/typography/Title";
 import axios from "axios";
 
-function OtherUserList(props) {
+const OtherUserList = (props) => {
 
     const [otherUsers, setOtherUsers] = useState([]);
 

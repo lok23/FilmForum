@@ -5,7 +5,7 @@ import axios from "axios";
 import {USER_SERVER} from "../../Config";
 import {registerUser, saveProfile} from "../../../_actions/user_actions";
 
-function ProfileEditPage() {
+const ProfileEditPage = () => {
 
     const dispatch = useDispatch()
 

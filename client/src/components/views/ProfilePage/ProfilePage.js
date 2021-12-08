@@ -4,7 +4,7 @@ import axios from "axios";
 import {API_KEY, API_URL, USER_SERVER} from "../../Config";
 import {Link} from "react-router-dom";
 
-function ProfilePage() {
+const ProfilePage = () => {
 
     // wanted to use useSelector, but it's too fast and as a result user is undefined. :(
     // const user = useSelector(state => state.user)

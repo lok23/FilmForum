@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Avatar, Col, Typography, Row } from 'antd';
 import { IMAGE_BASE_URL } from '../Config';
 
-function MovieCards(props) {
+const MovieCards = (props) => {
 
     let { key, image, movieId, movieName } = props
 
@@ -16,7 +16,6 @@ function MovieCards(props) {
             </div>
         </Col>
     )
-
 }
 
 export default MovieCards

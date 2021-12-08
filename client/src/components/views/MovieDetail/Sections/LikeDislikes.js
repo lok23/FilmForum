@@ -3,7 +3,7 @@ import { Tooltip, Icon } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-function LikeDislikes(props) {
+const LikeDislikes = (props) => {
     const user = useSelector(state => state.user)
 
     const [Likes, setLikes] = useState(0)

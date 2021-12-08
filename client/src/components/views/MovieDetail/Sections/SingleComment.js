@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux';
 import LikeDislikes from './LikeDislikes';
 import {USER_SERVER} from "../../../Config";
 const { TextArea } = Input;
-function SingleComment(props) {
+
+
+const SingleComment = (props) => {
     const user = useSelector(state => state.user);
     const [CommentValue, setCommentValue] = useState("")
     const [OpenReply, setOpenReply] = useState(false)

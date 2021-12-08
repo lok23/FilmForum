@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SingleComment from './SingleComment';
 
-function ReplyComment(props) {
+const ReplyComment = (props) => {
 
     const [ChildCommentNumber, setChildCommentNumber] = useState(0)
     const [OpenReplyComments, setOpenReplyComments] = useState(false)

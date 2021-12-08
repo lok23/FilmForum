@@ -13,7 +13,7 @@ import RightMenu from "../NavBar/Sections/RightMenu";
 import MovieCards from "../../cards/MovieCards";
 const { Title } = Typography;
 
-function LandingPage() {
+const LandingPage = () => {
 
     const [Movies, setMovies] = useState([])
     const [MainMovieImage, setMainMovieImage] = useState(null)

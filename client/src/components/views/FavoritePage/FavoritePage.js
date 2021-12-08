@@ -7,7 +7,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from '../../Config'
 
 const { Title } = Typography;
 
-function FavoritePage() {
+const FavoritePage = () => {
     const user = useSelector(state => state.user)
 
     const [Favorites, setFavorites] = useState([])

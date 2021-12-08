@@ -7,7 +7,7 @@ import {Link, withRouter} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {logoutUser, registerUser} from "../../../../_actions/user_actions";
 
-function RightMenu(props) {
+const RightMenu = (props) => {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch();
 

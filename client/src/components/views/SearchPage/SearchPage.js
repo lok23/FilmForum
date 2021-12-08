@@ -4,7 +4,8 @@ import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from '../..
 import {Link, useLocation} from "react-router-dom";
 import MovieCards from "../../cards/MovieCards";
 const { Title } = Typography;
-function SearchPage() {
+
+const SearchPage = () => {
 
     const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=c7d55be49c2a5de2c676827ccfc0a7ba&query="
     const NO_IMG = "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg";

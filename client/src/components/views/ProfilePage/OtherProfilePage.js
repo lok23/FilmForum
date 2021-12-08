@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 // Only make the request if the property user in userData is defined.
 // https://stackoverflow.com/questions/65980922/react-on-page-reload-receive-error-typeerror-cannot-read-property-x-of-undefi
-function OtherProfilePage(props) {
+const OtherProfilePage = (props) => {
 
     const params = useParams();
     console.log("PARAMS: ", params)

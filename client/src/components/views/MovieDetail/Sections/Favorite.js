@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button } from 'antd';
 import { useSelector } from 'react-redux';
 
-function Favorite(props) {
+const Favorite = (props) => {
     const user = useSelector(state => state.user)
 
     const movieId = props.movieId

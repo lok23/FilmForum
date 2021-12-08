@@ -7,7 +7,9 @@ import ReplyComment from './ReplyComment';
 import {API_KEY, API_URL, USER_SERVER} from "../../../Config";
 const { TextArea } = Input;
 const { Title } = Typography;
-function Comments(props) {
+
+
+const Comments = (props) => {
     const user = useSelector(state => state.user)
     const [Comment, setComment] = useState("")
 
