@@ -12,6 +12,7 @@ import NavBar from "../NavBar/NavBar";
 import RightMenu from "../NavBar/Sections/RightMenu";
 import MovieCards from "../../cards/MovieCards";
 import Modal from "../../modal/Modal";
+import RecentPagesList from "./Sections/RecentPagesList";
 
 
 const { Title } = Typography;
@@ -96,7 +97,7 @@ const LandingPage = () => {
                     </Link>
                 }
             </div>
-            ${role}, NOTLOGGED(-1) / USER(0) / MODERATOR(1) / ADMIN(2)
+r            ${role}, NOTLOGGED(-1) / USER(0) / MODERATOR(1) / ADMIN(2)
             {MainMovieImage &&
             <MainImage
                 image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}
@@ -107,7 +108,15 @@ const LandingPage = () => {
             }
 
             <div className="inner-container">
+                {/*Newest Users!*/}
                 <OtherUserList/>
+
+                {/*Only want to show this to people who are logged in*/}
+                {role === -1 ?
+                    <div></div>
+                    :
+                    <RecentPagesList/>
+                }
                 <Title level={2}> Movies by latest </Title>
                 <hr/>
                 <div className="movie-container">

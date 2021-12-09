@@ -22,6 +22,41 @@ const MovieDetailPage = (props) => {
     }
 
     useEffect(() => {
+        // test role
+        axios.get(`${USER_SERVER}/auth`).then((response) => {
+            // this might not work, double check
+            if (response.data.role === undefined) {
+                alert("not logged in");
+            } else {
+                setRole(response.data.role);
+            }
+        })
+    }, [])
+
+    useEffect(() => {
+        const variables = {
+            userFrom: localStorage.getItem('userId'),
+            movieId: props.match.params.movieId
+        }
+
+        console.log("--------variables------");
+        console.log("userFrom: ", localStorage.getItem('userId'));
+        console.log("movieId: ", props.match.params.movieId);
+
+        if (variable !== null) {
+            axios.post('/api/recent_pages/saveRecentPage', variables)
+                .then(response => {
+                    console.log("response from recent_pages/saveRecentPage: ", response);
+                    // if (response.data.success) {
+                    //     console.log('response.data.comments', response.data.comments)
+                    // } else {
+                    //     alert('sad face')
+                    // }
+                })
+        }
+    }, []);
+
+    useEffect(() => {
 
         let endpointForMovieInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
         fetchDetailInfo(endpointForMovieInfo)
