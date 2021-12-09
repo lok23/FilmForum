@@ -16,8 +16,6 @@ const MovieDetailPage = (props) => {
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])
     const [CommentLists, setCommentLists] = useState([])
-    const [LoadingForMovie, setLoadingForMovie] = useState(true)
-    const [LoadingForCasts, setLoadingForCasts] = useState(true)
     const [ActorToggle, setActorToggle] = useState(false)
     const movieVariable = {
         movieId: movieId
@@ -52,7 +50,6 @@ const MovieDetailPage = (props) => {
             .then(result => {
                 console.log(result)
                 setMovie(result)
-                setLoadingForMovie(false)
 
                 let endpointForCasts = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
                 fetch(endpointForCasts)
@@ -62,7 +59,6 @@ const MovieDetailPage = (props) => {
                         setCasts(result.cast)
                     })
 
-                setLoadingForCasts(false)
             })
             .catch(error => console.error('Error:', error)
             )
@@ -88,14 +84,12 @@ const MovieDetailPage = (props) => {
         <div>
             {`the role, ${role}`}
             {/* Header */}
-            {!LoadingForMovie ?
+            {
                 <MainImage
                     image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${Movie.backdrop_path}`}
                     title={Movie.original_title}
                     text={Movie.overview}
                 />
-                :
-                <div>loading...</div>
             }
 
 
@@ -108,10 +102,8 @@ const MovieDetailPage = (props) => {
 
 
                 {/* Movie Info */}
-                {!LoadingForMovie ?
+                {
                     <MovieInfo movie={Movie} />
-                    :
-                    <div>loading...</div>
                 }
 
                 <br />
@@ -124,11 +116,10 @@ const MovieDetailPage = (props) => {
                 {ActorToggle &&
                     <Row gutter={[16, 16]}>
                         {
-                            !LoadingForCasts ? Casts.map((cast, index) => (
+                            Casts.map((cast, index) => (
                                 cast.profile_path &&
                                 <ActorCards image={cast.profile_path} characterName={cast.characterName} />
-                            )) :
-                                <div>loading...</div>
+                            ))
                         }
                     </Row>
                 }

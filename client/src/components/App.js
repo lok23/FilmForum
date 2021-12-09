@@ -17,7 +17,7 @@ import OtherProfilePage from "./views/ProfilePage/OtherProfilePage";
 import Modal from "./modal/Modal";
 function App() {
   return (
-    <Suspense fallback={(<div>Loading...</div>)}>
+    <div>
       <NavBar />
       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <Switch>
@@ -35,7 +35,7 @@ function App() {
         </Switch>
       </div>
       <Footer />
-    </Suspense>
+    </div>
   );
 }
 

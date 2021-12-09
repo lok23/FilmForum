@@ -4,6 +4,7 @@ import axios from 'axios';
 import './favorite.css';
 import { useSelector } from 'react-redux';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../Config'
+import {Link} from "react-router-dom";
 
 const { Title } = Typography;
 
@@ -11,7 +12,6 @@ const FavoritePage = () => {
     const user = useSelector(state => state.user)
 
     const [Favorites, setFavorites] = useState([])
-    const [Loading, setLoading] = useState(true)
 
     // localStorage stores even if browser is closed
     let variable = { userFrom: localStorage.getItem('userId') }
@@ -28,7 +28,6 @@ const FavoritePage = () => {
                 if (response.data.success) {
                     console.log(response.data.favorites)
                     setFavorites(response.data.favorites)
-                    setLoading(false)
                 } else {
                     alert('Failed to get subscription videos')
                 }
@@ -83,10 +82,9 @@ const FavoritePage = () => {
             {user.userData && !user.userData.isAuth ?
                 <div style={{ width: '100%', fontSize: '2rem', height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <p>Please Log in first...</p>
-                    <a href="/login">Go to Login page</a>
+                    <Link to="/login">Go to Login page</Link>
                 </div>
                 :
-                !Loading &&
                 <table>
                     <thead>
                         <tr>
