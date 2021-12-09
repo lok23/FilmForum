@@ -43,6 +43,8 @@ const MovieDetailPage = (props) => {
         setActorToggle(!ActorToggle)
     }
 
+    console.log("CL: ", CommentLists);
+
     const fetchDetailInfo = (endpoint) => {
 
         fetch(endpoint)
