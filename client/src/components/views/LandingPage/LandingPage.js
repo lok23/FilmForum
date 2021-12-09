@@ -11,6 +11,9 @@ import OtherUserList from "./Sections/OtherUserList";
 import NavBar from "../NavBar/NavBar";
 import RightMenu from "../NavBar/Sections/RightMenu";
 import MovieCards from "../../cards/MovieCards";
+import Modal from "../../modal/Modal";
+
+
 const { Title } = Typography;
 
 const LandingPage = () => {
@@ -58,9 +61,17 @@ const LandingPage = () => {
         setSearchTerm(e.target.value);
     }
 
-    return (
+    // if (localStorage.getItem("modalWasSeen") === true) {
+    //     document.body.classList.add('overlay')
+    // }
+
+    console.log("modalWasSeen: ", localStorage.getItem("modalWasSeen"));
+    if (localStorage.getItem("modalWasSeen") !== "true") {
+        return <Modal/>
+    }
+        return (
         <div className="container">
-            <header className="header">
+            <div className="header">
                 <div>
                     <input className="search"
                            type="search"
@@ -84,7 +95,7 @@ const LandingPage = () => {
                     }} className="btn btn-primary">PROFILE
                     </Link>
                 }
-            </header>
+            </div>
             ${role}, NOTLOGGED(-1) / USER(0) / MODERATOR(1) / ADMIN(2)
             {MainMovieImage &&
             <MainImage
@@ -116,6 +127,7 @@ const LandingPage = () => {
             </div>
 
         </div>
+
     )
 }
 
