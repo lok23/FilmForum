@@ -1,6 +1,8 @@
 const { Comment } = require("../models/Comment");
 const { auth } = require("../middleware/auth");
 
+
+// populate writer aka user. We need to retrieve user's name so comments show up properly
 module.exports = (app) => {
     app.post("/api/comment/saveComment", auth, (req, res) => {
 

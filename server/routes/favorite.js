@@ -57,7 +57,7 @@ module.exports = (app) => {
 
 
     app.post("/api/favorite/getFavoredMovie", (req, res) => {
-        // Get everyone who has favorited this movie
+        // Get all movies which this guy has favorited
         Favorite.find({'userFrom': req.body.userFrom})
             .exec((err, favorites) => {
                 if (err) return res.status(400).send(err);
