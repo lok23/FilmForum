@@ -1,7 +1,7 @@
 import './LandingPageStyle.css'
 import React, { useEffect, useState, useRef } from 'react'
 import {Typography, Row, Col, Divider} from 'antd';
-import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from '../../Config'
+import {API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE, NO_IMG} from '../../Config'
 import MainImage from './Sections/MainImage'
 import {Link} from "react-router-dom";
 import axios from "axios";
@@ -110,20 +110,20 @@ const LandingPage = () => {
                 <OtherUserList/>
                 <Title level={2}> Movies by latest </Title>
                 <hr/>
-                <Row gutter={[16, 16]}>
+                <div className="movie-container">
                     {Movies && Movies.map((movie, index) => (
                         <div key={index}>
                             <MovieCards
                                 image={movie.poster_path ?
                                     `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-                                    : null}
+                                    : NO_IMG}
                                 movieId={movie.id}
                                 movieName={movie.original_title}
+                                movieAverage={movie.vote_average}
                             />
                         </div>
                     ))}
-                </Row>
-
+                </div>
             </div>
 
         </div>

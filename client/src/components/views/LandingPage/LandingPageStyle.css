@@ -17,3 +17,8 @@
 .overlay {
     background: rgba(49,49,49,0.8);
 }
+
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+}

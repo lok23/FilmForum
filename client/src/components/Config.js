@@ -15,3 +15,6 @@ export const IMAGE_SIZE = 'w1280'
 
 // w92, w154, w185, w342, w500, w780, original
 export const POSTER_SIZE = 'w500'
+
+// Image shown when the movie poster cannot be found
+export const NO_IMG = "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg";
