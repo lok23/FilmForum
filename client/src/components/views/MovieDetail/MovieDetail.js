@@ -33,6 +33,8 @@ const MovieDetailPage = (props) => {
         })
     }, [])
 
+    let variable = { userFrom: localStorage.getItem('userId') }
+
     useEffect(() => {
         const variables = {
             userFrom: localStorage.getItem('userId'),

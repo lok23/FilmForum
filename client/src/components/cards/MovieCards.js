@@ -4,6 +4,16 @@ import { IMAGE_BASE_URL } from '../Config';
 import "./MovieCards.css"
 import {Link} from "react-router-dom";
 
+const setVoteClass = (movie_Average) => {
+    if (movie_Average >= 8) {
+        return "green";
+    } else if (movie_Average >= 6) {
+        return "yellow";
+    } else {
+        return "red";
+    }
+}
+
 const MovieCards = (props) => {
 
     let { key, image, movieId, movieName, movieAverage } = props
@@ -16,7 +26,7 @@ const MovieCards = (props) => {
                 </Link>
                 <div className="movie-info">
                     <h3>{movieName}</h3>
-                    <span>{movieAverage}</span>
+                    <span className={setVoteClass(movieAverage)}>{movieAverage}</span>
                 </div>
             </div>
     )

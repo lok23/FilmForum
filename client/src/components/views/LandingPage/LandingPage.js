@@ -97,7 +97,7 @@ const LandingPage = () => {
                     </Link>
                 }
             </div>
-r            ${role}, NOTLOGGED(-1) / USER(0) / MODERATOR(1) / ADMIN(2)
+            ${role}, NOTLOGGED(-1) / USER(0) / MODERATOR(1) / ADMIN(2)
             {MainMovieImage &&
             <MainImage
                 image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}
