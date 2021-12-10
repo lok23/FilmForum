@@ -14,6 +14,7 @@ import {Link} from "react-router-dom";
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { Button } from '@material-ui/core';
 import TrailerButton from "./TrailerButton";
+import FavoritedUsers from "./Sections/FavoritedUsers";
 
 const MovieDetailPage = (props) => {
     const movieId = props.match.params.movieId
@@ -166,7 +167,7 @@ const MovieDetailPage = (props) => {
                     alert('Failed to get Favorite');
                 }
             })
-    }, [])
+    }, [favorites])
 
     console.log("favorites: ", favorites);
 
@@ -185,17 +186,20 @@ const MovieDetailPage = (props) => {
             {/* Body */}
             <div style={{ width: '85%', margin: '1rem auto' }}>
 
-                <TrailerButton role={role} trailer={trailer}/>
-
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between'}}>
                     <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
-                </div>
 
-                {
-                    favorites.map((favorite, index) => (
-                        favorite.userFrom.name
-                    ))
-                }
+                    <TrailerButton role={role} trailer={trailer}/>
+                </div>
+                <div>
+                    {/* users that favorited this movie */}
+                    <h3>Users who favorited this movie:</h3>
+                    {
+                        favorites.map((favorited, index) => (
+                            <FavoritedUsers favorited={favorited}/>
+                        ))
+                    }
+                </div>
 
                 {/* Movie Info */}
                 {
