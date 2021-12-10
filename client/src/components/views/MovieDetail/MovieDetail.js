@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { List, Avatar, Row, Col, Button } from 'antd';
+import { List, Avatar, Row, Col } from 'antd';
 import axios from 'axios';
 
 import Comments from './Sections/Comments'
@@ -9,7 +9,10 @@ import MainImage from '../../views/LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
 import ActorCards from "../../cards/ActorCards";
+import {Link} from "react-router-dom";
 
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import { Button } from '@material-ui/core';
 
 const MovieDetailPage = (props) => {
     const movieId = props.match.params.movieId
@@ -119,6 +122,25 @@ const MovieDetailPage = (props) => {
         })
     }, [])
 
+
+    const trailerJSON = `http://api.themoviedb.org/3/movie/157336/videos?api_key=844dba0bfd8f3a4f3799f6130ef9e335`
+
+    const [trailer, setTrailer] = useState("");
+
+    console.log("DOES THIS WORK")
+
+    useEffect(() => {
+        console.log ("DUMMY");
+        fetch(trailerJSON)
+            .then(result => result.json())
+            .then(result => {
+                console.log("trailer: ", result);
+                console.log("trailer.results[0].key: ", result.results[0].key);
+                setTrailer(result.results[0].key)
+            })
+    }, [])
+
+
     return (
         <div>
             {`the role, ${role}`}
@@ -131,9 +153,30 @@ const MovieDetailPage = (props) => {
                 />
             }
 
-
             {/* Body */}
             <div style={{ width: '85%', margin: '1rem auto' }}>
+
+                {
+                    role === 1 ?
+                        <Button
+                            variant="contained"
+                            startIcon={<YouTubeIcon/>}
+                            color="secondary"
+                            target="_blank"
+                            href={`http://www.youtube.com/watch?v=${trailer}`}
+                        >
+                            Click here to view the trailer!
+                        </Button>
+                        :
+                        <Button
+                            disabled="true"
+                            variant="contained"
+                            startIcon={<YouTubeIcon/>}
+                            color="secondary"
+                        >
+                            Become a premium member for access to trailers!
+                        </Button>
+                }
 
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
@@ -149,7 +192,7 @@ const MovieDetailPage = (props) => {
                 {/* Actors Grid*/}
 
                 <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
-                    <Button onClick={toggleActorView}>Toggle Actor View </Button>
+                    <Button variant="contained" color="primary" onClick={toggleActorView}>Toggle Actor View </Button>
                 </div>
 
                 {ActorToggle &&
