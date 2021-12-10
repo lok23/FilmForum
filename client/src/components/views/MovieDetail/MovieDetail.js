@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Comments from './Sections/Comments'
 import LikeDislikes from './Sections/LikeDislikes';
-import {API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, USER_SERVER} from '../../Config'
+import {API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, USER_SERVER, POSTER_SIZE, NO_IMG} from '../../Config'
 import MainImage from '../../views/LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
@@ -15,6 +15,7 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import { Button } from '@material-ui/core';
 import TrailerButton from "./TrailerButton";
 import FavoritedUsers from "./Sections/FavoritedUsers";
+import MovieCards from "../../cards/MovieCards";
 
 const MovieDetailPage = (props) => {
     const movieId = props.match.params.movieId
@@ -187,14 +188,14 @@ const MovieDetailPage = (props) => {
                 </div>
 
                 {ActorToggle &&
-                    <Row gutter={[16, 16]}>
+                    <div className="movie-container">
                         {
-                            Casts.map((cast, index) => (
-                                cast.profile_path &&
-                                <ActorCards image={cast.profile_path} characterName={cast.characterName} />
-                            ))
+                        Casts.map((cast, index) => (
+                            cast.profile_path &&
+                            <ActorCards image={cast.profile_path} characterName={cast.characterName} />
+                        ))
                         }
-                    </Row>
+                    </div>
                 }
                 <br />
 
