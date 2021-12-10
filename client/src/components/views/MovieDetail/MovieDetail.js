@@ -22,14 +22,18 @@ const MovieDetailPage = (props) => {
     const [Casts, setCasts] = useState([])
     const [CommentLists, setCommentLists] = useState([])
     const [ActorToggle, setActorToggle] = useState(false)
+    const [role, setRole] = useState(-1);
+    const [trailer, setTrailer] = useState("");
+    const [favorites, setFavorites] = useState([]);
     const movieVariable = {
         movieId: movieId
     }
 
+    axios.defaults.withCredentials = true;
+
+    // Authenticates user
     useEffect(() => {
-        // test role
         axios.get(`${USER_SERVER}/auth`).then((response) => {
-            // this might not work, double check
             if (response.data.role === undefined) {
                 alert("not logged in");
             } else {
@@ -38,9 +42,9 @@ const MovieDetailPage = (props) => {
         })
     }, [])
 
-    let variable = { userFrom: localStorage.getItem('userId') }
-
+    // Saves that user has visited this page
     useEffect(() => {
+        let variable = { userFrom: localStorage.getItem('userId') }
         const variables = {
             userFrom: localStorage.getItem('userId'),
             movieId: props.match.params.movieId
@@ -54,42 +58,19 @@ const MovieDetailPage = (props) => {
             axios.post('/api/recent_pages/saveRecentPage', variables)
                 .then(response => {
                     console.log("response from recent_pages/saveRecentPage: ", response);
-                    // if (response.data.success) {
-                    //     console.log('response.data.comments', response.data.comments)
-                    // } else {
-                    //     alert('sad face')
-                    // }
+                    if (response.data.success) {
+                        console.log('response.data.comments', response.data.comments)
+                    } else {
+                        alert('could not save this recentPage')
+                    }
                 })
         }
     }, []);
 
+    // Gets details about this movie
     useEffect(() => {
-
         let endpointForMovieInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
-        fetchDetailInfo(endpointForMovieInfo)
-
-        axios.post('/api/comment/getComments', movieVariable)
-            .then(response => {
-                console.log(response)
-                if (response.data.success) {
-                    console.log('response.data.comments', response.data.comments)
-                    setCommentLists(response.data.comments)
-                } else {
-                    alert('Failed to get comments Info')
-                }
-            })
-
-    }, [CommentLists]) // Whenever we modify CommentLists we need to re-render the page
-
-    const toggleActorView = () => {
-        setActorToggle(!ActorToggle)
-    }
-
-    console.log("CL: ", CommentLists);
-
-    const fetchDetailInfo = (endpoint) => {
-
-        fetch(endpoint)
+        fetch(endpointForMovieInfo)
             .then(result => result.json())
             .then(result => {
                 console.log(result)
@@ -106,33 +87,34 @@ const MovieDetailPage = (props) => {
             })
             .catch(error => console.error('Error:', error)
             )
+    }, [])
+
+    // Fetches comments for this movie
+    useEffect(() => {
+        axios.post('/api/comment/getComments', movieVariable)
+            .then(response => {
+                console.log(response)
+                if (response.data.success) {
+                    console.log('response.data.comments', response.data.comments)
+                    setCommentLists(response.data.comments)
+                } else {
+                    alert('Failed to get comments Info')
+                }
+            })
+    }, [CommentLists]) // Whenever we modify CommentLists we need to re-render the page
+
+    // Handles button click for whether we want to view actors
+    const toggleActorView = () => {
+        setActorToggle(!ActorToggle)
     }
 
-    const [role, setRole] = useState(-1);
-
-    // apparently useful?
-    axios.defaults.withCredentials = true;
-    useEffect(() => {
-        // test role
-        axios.get(`${USER_SERVER}/auth`).then((response) => {
-            // this might not work, double check
-            if (response.data.role === undefined) {
-                alert("not logged in");
-            } else {
-                setRole(response.data.role);
-            }
-        })
-    }, [])
+    // console.log("CL: ", CommentLists);
 
     console.log("movieID: ", movieId);
 
     const trailerJSON = `http://api.themoviedb.org/3/movie/${movieId}/videos?api_key=844dba0bfd8f3a4f3799f6130ef9e335`
 
-    const [trailer, setTrailer] = useState("");
-
-    console.log("DOES THIS WORK")
-
-    // Get Trailer
+    // Get trailer link for this movie
     useEffect(() => {
         console.log ("DUMMY");
         fetch(trailerJSON)
@@ -147,18 +129,9 @@ const MovieDetailPage = (props) => {
             })
     }, [])
 
-
-    // DENNIS SHITTY CODE
-    const [favorites, setFavorites] = useState([]);
-
-    const variables = {
-        movieId: movieId,
-    }
-    // apparently useful?
-    axios.defaults.withCredentials = true;
-    // Get Users who favorited this
+    // Get users who favorited this movie
     useEffect(() => {
-        axios.post('/api/favorite/favoriteNumberTEST', variables)
+        axios.post('/api/favorite/favoriteNumberTEST', movieVariable)
             .then(response => {
                 if (response.data.success) {
                     console.log("favoriteNumberTEST: ", response.data);
@@ -167,7 +140,7 @@ const MovieDetailPage = (props) => {
                     alert('Failed to get Favorite');
                 }
             })
-    }, [favorites])
+    }, [favorites]) // If user adds to favorites or removes from favorites, we want to re-render which users have favorited it
 
     console.log("favorites: ", favorites);
 
@@ -227,10 +200,6 @@ const MovieDetailPage = (props) => {
 
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <LikeDislikes video videoId={movieId} userId={localStorage.getItem('userId')} />
-                </div>
-
-                <div>
-                    Users who liked this:
                 </div>
 
                 {/* Comments */}
