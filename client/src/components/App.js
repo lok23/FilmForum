@@ -15,6 +15,7 @@ import ProfilePage from "./views/ProfilePage/ProfilePage";
 import ProfileEditPage from "./views/ProfilePage/ProfileEditPage";
 import OtherProfilePage from "./views/ProfilePage/OtherProfilePage";
 import Modal from "./modal/Modal";
+import PrivacyPolicyPage from "./views/PrivacyPolicyPage/PrivacyPolicyPage";
 function App() {
   return (
     <div>
@@ -30,8 +31,8 @@ function App() {
           <Route exact path="/profile/" component={Auth(ProfilePage, null)}/>
           <Route exact path="/profileEdit/" component={Auth(ProfileEditPage, null)}/>
           <Route exact path="/profile/:user" component={Auth(OtherProfilePage, null)}/>
-            <Route exact path="/Modal" component={Auth(Modal, null)}/>
-
+          <Route exact path="/Modal" component={Auth(Modal, null)}/>
+          <Route exact path="/privacyPolicyPage" component={Auth(PrivacyPolicyPage, null)}/>
         </Switch>
       </div>
       <Footer />

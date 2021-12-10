@@ -19,7 +19,7 @@ export default function Modal(props) {
                     <div className="modal-content">
                         <h2>Privacy Policy</h2>
                         <p>
-                            At MOVIEAPP, one of our main priorities is the privacy of our visitors.
+                            At FILMFORUM, one of our main priorities is the privacy of our visitors.
                             This Privacy Policy applies only to our online activities and is valid for visitors to our
                             website with regards to the information that they shared and/or collect.
                             By using our website, you hereby consent to our Privacy Policy and agree to its terms.

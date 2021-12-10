@@ -1,5 +1,6 @@
 import React from 'react'
 import {Icon} from 'antd';
+import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -8,7 +9,7 @@ const Footer = () => {
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-           <p> Happy Coding  <Icon type="smile" /></p>
+            <Link to="/privacyPolicyPage">Privacy Policy</Link>
         </div>
     )
 }
