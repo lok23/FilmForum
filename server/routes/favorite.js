@@ -16,6 +16,22 @@ module.exports = (app) => {
             })
     });
 
+    app.post("/api/favorite/favoriteNumberTEST", (req, res) => {
+
+        // Find Favorite information inside Favorite collection by movieID
+        Favorite.find({"movieId": req.body.movieId})
+            // could probably use .poopulate('userFrom') instead, but I'm too lazy to recreate mongodb collections
+            .populate({
+                path: 'userFrom',
+                model: 'User'
+            })
+            .exec((err, favorite) => {
+                if (err) return res.status(400).send(err)
+
+                res.status(200).json({success: true, favorite: favorite})
+            })
+    });
+
 
     app.post("/api/favorite/favorited", (req, res) => {
 

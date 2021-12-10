@@ -123,7 +123,7 @@ const MovieDetailPage = (props) => {
         })
     }, [])
 
-    console.log("movieID: ", movieVariable);
+    console.log("movieID: ", movieId);
 
     const trailerJSON = `http://api.themoviedb.org/3/movie/${movieId}/videos?api_key=844dba0bfd8f3a4f3799f6130ef9e335`
 
@@ -131,6 +131,7 @@ const MovieDetailPage = (props) => {
 
     console.log("DOES THIS WORK")
 
+    // Get Trailer
     useEffect(() => {
         console.log ("DUMMY");
         fetch(trailerJSON)
@@ -145,6 +146,29 @@ const MovieDetailPage = (props) => {
             })
     }, [])
 
+
+    // DENNIS SHITTY CODE
+    const [favorites, setFavorites] = useState([]);
+
+    const variables = {
+        movieId: movieId,
+    }
+    // apparently useful?
+    axios.defaults.withCredentials = true;
+    // Get Users who favorited this
+    useEffect(() => {
+        axios.post('/api/favorite/favoriteNumberTEST', variables)
+            .then(response => {
+                if (response.data.success) {
+                    console.log("favoriteNumberTEST: ", response.data);
+                    setFavorites(response.data.favorite);
+                } else {
+                    alert('Failed to get Favorite');
+                }
+            })
+    }, [])
+
+    console.log("favorites: ", favorites);
 
     return (
         <div>
@@ -167,6 +191,11 @@ const MovieDetailPage = (props) => {
                     <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
                 </div>
 
+                {
+                    favorites.map((favorite, index) => (
+                        favorite.userFrom.name
+                    ))
+                }
 
                 {/* Movie Info */}
                 {
@@ -194,6 +223,10 @@ const MovieDetailPage = (props) => {
 
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <LikeDislikes video videoId={movieId} userId={localStorage.getItem('userId')} />
+                </div>
+
+                <div>
+                    Users who liked this:
                 </div>
 
                 {/* Comments */}

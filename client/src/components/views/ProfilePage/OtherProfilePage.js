@@ -33,7 +33,7 @@ const OtherProfilePage = (props) => {
                 }
             })
 
-    }, )
+    }, [])
 
     // should refactor this lazy code as soon as possible
     let actualRole = "unknown";

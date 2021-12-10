@@ -16,7 +16,10 @@ module.exports = (app) => {
             variable = {commentId: req.body.commentId}
         }
 
+        console.log("getLikes variable: ", variable);
+
         Like.find(variable)
+            .populate('userId')
             .exec((err, likes) => {
                 if (err) return res.status(400).send(err);
                 res.status(200).json({success: true, likes})
