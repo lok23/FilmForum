@@ -13,6 +13,7 @@ import {Link} from "react-router-dom";
 
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { Button } from '@material-ui/core';
+import TrailerButton from "./TrailerButton";
 
 const MovieDetailPage = (props) => {
     const movieId = props.match.params.movieId
@@ -122,8 +123,9 @@ const MovieDetailPage = (props) => {
         })
     }, [])
 
+    console.log("movieID: ", movieVariable);
 
-    const trailerJSON = `http://api.themoviedb.org/3/movie/157336/videos?api_key=844dba0bfd8f3a4f3799f6130ef9e335`
+    const trailerJSON = `http://api.themoviedb.org/3/movie/${movieId}/videos?api_key=844dba0bfd8f3a4f3799f6130ef9e335`
 
     const [trailer, setTrailer] = useState("");
 
@@ -135,8 +137,11 @@ const MovieDetailPage = (props) => {
             .then(result => result.json())
             .then(result => {
                 console.log("trailer: ", result);
-                console.log("trailer.results[0].key: ", result.results[0].key);
-                setTrailer(result.results[0].key)
+                // result.results[0] will be undefined if the movie doesn't have a trailer
+                if (result.results[0] !== undefined) {
+                    console.log("trailer.results[0].key: ", result.results[0].key);
+                    setTrailer(result.results[0].key)
+                }
             })
     }, [])
 
@@ -156,27 +161,7 @@ const MovieDetailPage = (props) => {
             {/* Body */}
             <div style={{ width: '85%', margin: '1rem auto' }}>
 
-                {
-                    role === 1 ?
-                        <Button
-                            variant="contained"
-                            startIcon={<YouTubeIcon/>}
-                            color="secondary"
-                            target="_blank"
-                            href={`http://www.youtube.com/watch?v=${trailer}`}
-                        >
-                            Click here to view the trailer!
-                        </Button>
-                        :
-                        <Button
-                            disabled="true"
-                            variant="contained"
-                            startIcon={<YouTubeIcon/>}
-                            color="secondary"
-                        >
-                            Become a premium member for access to trailers!
-                        </Button>
-                }
+                <TrailerButton role={role} trailer={trailer}/>
 
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
