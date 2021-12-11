@@ -19,7 +19,7 @@ module.exports = (app) => {
         console.log("getLikes variable: ", variable);
 
         Like.find(variable)
-            .populate('userId')
+            // .populate('userId') // do not use .populate here it will break stuff!!!
             .exec((err, likes) => {
                 if (err) return res.status(400).send(err);
                 res.status(200).json({success: true, likes})
