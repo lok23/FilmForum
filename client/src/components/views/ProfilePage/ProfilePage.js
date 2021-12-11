@@ -3,6 +3,8 @@ import {useSelector} from "react-redux";
 import axios from "axios";
 import {API_KEY, API_URL, USER_SERVER} from "../../Config";
 import {Link} from "react-router-dom";
+import FavoritePage from "../FavoritePage/FavoritePage";
+import FavoriteFragment from "./FavoriteFragment";
 
 const ProfilePage = () => {
 
@@ -41,12 +43,14 @@ const ProfilePage = () => {
 
     return (
         <div>
+            <h2>My profile page!</h2>
             <p>email: {email}</p>
             <p>name: {name}</p>
             <p>role: {actualRole}</p>
             <Link to="profileEdit">
                 <button>Edit Profile</button>
             </Link>
+            <FavoriteFragment/>
         </div>
     );
 }
