@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 const LikeDislikes = (props) => {
     const user = useSelector(state => state.user)
 
+    // console.log("LikeDislikes props: ", props);
+
     const [Likes, setLikes] = useState(0)
     const [Dislikes, setDislikes] = useState(0)
     const [LikeAction, setLikeAction] = useState(null)

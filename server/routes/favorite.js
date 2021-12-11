@@ -20,7 +20,7 @@ module.exports = (app) => {
 
         // Find Favorite information inside Favorite collection by movieID
         Favorite.find({"movieId": req.body.movieId})
-            // could probably use .poopulate('userFrom') instead, but I'm too lazy to recreate mongodb collections
+            // could probably use .populate('userFrom') instead, but I'm too lazy to recreate mongodb collections
             .populate({
                 path: 'userFrom',
                 model: 'User'

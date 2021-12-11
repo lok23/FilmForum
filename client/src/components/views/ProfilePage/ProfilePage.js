@@ -3,7 +3,6 @@ import {useSelector} from "react-redux";
 import axios from "axios";
 import {API_KEY, API_URL, USER_SERVER} from "../../Config";
 import {Link} from "react-router-dom";
-import FavoritePage from "../FavoritePage/FavoritePage";
 import FavoriteFragment from "./FavoriteFragment";
 
 const ProfilePage = () => {

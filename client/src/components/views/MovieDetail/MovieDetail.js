@@ -169,9 +169,12 @@ const MovieDetailPage = (props) => {
                     {/* users that favorited this movie */}
                     <h3>Users who favorited this movie:</h3>
                     {
-                        favorites.map((favorited, index) => (
-                            <FavoritedUsers favorited={favorited}/>
-                        ))
+                        favorites.length > 0 ?
+                            favorites.map((favorited, index) => (
+                                <FavoritedUsers favorited={favorited}/>
+                            ))
+                            :
+                            <span>No one has favorited this movie!</span>
                     }
                 </div>
 

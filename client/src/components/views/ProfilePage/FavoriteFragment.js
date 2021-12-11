@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { Typography, Popover, Button } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../../Config'
+import {API_KEY, API_URL, IMAGE_BASE_URL, NO_IMG, POSTER_SIZE} from '../../Config'
 import {Link} from "react-router-dom";
+import MovieCards from "../../cards/MovieCards";
+import RecentPagesList from "../LandingPage/Sections/RecentPagesList";
+import FavoriteFragmentLikesList from "./FavoriteFragmentLikesList";
 
 const { Title } = Typography;
 
-const FavoritePage = () => {
+const FavoriteFragment = () => {
     const user = useSelector(state => state.user)
 
-    const [Favorites, setFavorites] = useState([])
-    const [likes, setLikes] = useState([]);
+    const [Favorites, setFavorites] = useState([]);
 
     // localStorage stores even if browser is closed
     let variable = { userFrom: localStorage.getItem('userId') }
@@ -34,27 +36,16 @@ const FavoritePage = () => {
             })
     }
 
-    useEffect(() => {
-        axios.post('/api/like/getLikes', variable)
-            .then(response => {
-                if (response.data.success) {
-                    console.log("response.data: ", response.data.likes[0].videoId)
-                    setLikes(response.data.likes)
-                } else {
-                    alert('Failed to get likes')
-                }
-            })
-    }, [])
-
-    console.log("likes: ", likes);
-
     const renderCards = Favorites.map((favorite, index) => {
+        console.log("favorite: ", favorite);
         const content = (
             <div>
-                {/* Not every movie has a poster, so we need the ternary operator to account for that */}
-                {favorite.moviePost ?
-                    <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${favorite.moviePost}`} />
-                    : "no image"}
+                <Link to={`/movie/${favorite.movieId}`} >
+                    {/* Not every movie has a poster, so we need the ternary operator to account for that */}
+                    {favorite.moviePost ?
+                        <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${favorite.moviePost}`} />
+                        : "no image"}
+                </Link>
             </div>
         );
 
@@ -82,8 +73,9 @@ const FavoritePage = () => {
                     </tbody>
                 </table>
             }
+            <FavoriteFragmentLikesList/>
         </div>
     )
 }
 
-export default FavoritePage
+export default FavoriteFragment
