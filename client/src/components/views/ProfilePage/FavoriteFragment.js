@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Typography, Popover, Button } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import {API_KEY, API_URL, IMAGE_BASE_URL, NO_IMG, POSTER_SIZE} from '../../Config'
-import {Link} from "react-router-dom";
+import {API_KEY, API_URL, IMAGE_BASE_URL, NO_IMG, POSTER_SIZE, USER_SERVER} from '../../Config'
+import {Link, useParams} from "react-router-dom";
 import MovieCards from "../../cards/MovieCards";
 import RecentPagesList from "../LandingPage/Sections/RecentPagesList";
 import FavoriteFragmentLikesList from "./FavoriteFragmentLikesList";
@@ -11,18 +11,41 @@ import FavoriteFragmentLikesList from "./FavoriteFragmentLikesList";
 const { Title } = Typography;
 
 const FavoriteFragment = () => {
-    const user = useSelector(state => state.user)
+    const params = useParams();
+    console.log("PARAMS: ", params)
 
+    const [profileId, setProfileId] = useState("");
+    axios.defaults.withCredentials = true;
+    useEffect(() => {
+        axios.get(`${USER_SERVER}/peepee/${params.user}`).then((response) => {
+            console.log("response peepee : ", response)
+
+            if (response.data === null) {
+                // do nothing
+            } else if (response === undefined) {
+                alert("that profile doesn't exist!");
+            } else {
+                setProfileId(response.data._id);
+            }
+
+        })
+    }, [])
+
+    console.log("peepee profileId: ", profileId);
     const [Favorites, setFavorites] = useState([]);
 
-    // localStorage stores even if browser is closed
-    let variable = { userFrom: localStorage.getItem('userId') }
+    let variable;
+    if (profileId === "") {
+        variable = { userFrom: localStorage.getItem('userId') }
+    } else {
+        variable = {userFrom: profileId};
+    }
+
+    console.log("FAV F variable: ", variable);
 
     useEffect(() => {
         fetchFavoredMovie()
-    }, [])
-
-    console.log(user)
+    }, [Favorites])
 
     const fetchFavoredMovie = () => {
         axios.post('/api/favorite/getFavoredMovie', variable)
@@ -35,6 +58,8 @@ const FavoriteFragment = () => {
                 }
             })
     }
+
+    console.log("FF Favorites: ", Favorites);
 
     const renderCards = Favorites.map((favorite, index) => {
         console.log("favorite: ", favorite);
