@@ -19,21 +19,25 @@ const OtherProfilePage = (props) => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [role, setRole] = useState("");
+    const [profileId, setProfileId] = useState("");
     // apparently useful?
     axios.defaults.withCredentials = true;
     useEffect(() => {
             axios.get(`${USER_SERVER}/peepee/${props.location.state}`).then((response) => {
-                console.log("response: ", response)
+                console.log("response peepee : ", response)
                 if (response === undefined) {
                     alert("that profile doesn't exist!");
                 } else {
                     setEmail(response.data.email)
                     setName(response.data.name)
                     setRole(response.data.role)
+                    setProfileId(response.data._id);
                 }
             })
 
     }, [])
+
+    console.log("peepee profileId: ", profileId);
 
     // should refactor this lazy code as soon as possible
     let actualRole = "unknown";
