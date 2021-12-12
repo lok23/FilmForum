@@ -6,7 +6,7 @@ import {API_KEY, API_URL, IMAGE_BASE_URL, NO_IMG, POSTER_SIZE, USER_SERVER} from
 import {Link, useParams} from "react-router-dom";
 import MovieCards from "../../cards/MovieCards";
 import RecentPagesList from "../LandingPage/Sections/RecentPagesList";
-import ProfilePageFavoriteFragmentLikesList from "./ProfilePageFavoriteFragmentLikesList";
+import ProfilePageLikesListFragment from "./ProfilePageLikesListFragment";
 
 const { Title } = Typography;
 

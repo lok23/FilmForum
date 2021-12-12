@@ -5,7 +5,8 @@ import {Link, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 import OtherProfilePageFavoriteFragment from "./OtherProfilePageFavoriteFragment";
-import OtherProfilePageFavoriteFragmentLikesList from "./OtherProfilePageFavoriteFragmentLikesList";
+import OtherProfilePageLikesListFragment from "./OtherProfilePageLikesListFragment";
+import {Button} from "@material-ui/core";
 
 
 // Only make the request if the property user in userData is defined.
@@ -60,9 +61,12 @@ const OtherProfilePage = (props) => {
     return (
         <div>
             {user.userData.email === email ?
-                <div>
-                    click here go to your profile!
-                </div>
+                <Button>
+                    <Link to={{
+                        pathname: `/profile`
+                    }} className="btn btn-primary">Click here go to your profile!
+                    </Link>
+                </Button>
                 :
 
             <div>
@@ -74,7 +78,7 @@ const OtherProfilePage = (props) => {
                     <OtherProfilePageFavoriteFragment/>
                 </div>
                 <div>
-                    <OtherProfilePageFavoriteFragmentLikesList/>
+                    <OtherProfilePageLikesListFragment/>
                 </div>
             </div>
 

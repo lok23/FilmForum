@@ -4,7 +4,7 @@ import axios from "axios";
 import {API_KEY, API_URL, USER_SERVER} from "../../Config";
 import {Link} from "react-router-dom";
 import ProfilePageFavoriteFragment from "./ProfilePageFavoriteFragment";
-import ProfilePageFavoriteFragmentLikesList from "./ProfilePageFavoriteFragmentLikesList";
+import ProfilePageLikesListFragment from "./ProfilePageLikesListFragment";
 
 const ProfilePage = () => {
 
@@ -54,7 +54,7 @@ const ProfilePage = () => {
                 <ProfilePageFavoriteFragment/>
             </div>
             <div>
-                <ProfilePageFavoriteFragmentLikesList/>
+                <ProfilePageLikesListFragment/>
             </div>
         </div>
     );

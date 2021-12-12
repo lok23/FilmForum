@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, NO_IMG, POSTER_SIZE} from "../../Config";
 
 
-const OtherProfilePageFavoriteFragmentLikesItem = (props) => {
+const OtherProfilePageLikesItemFragment = (props) => {
 
     let { page } = props
 
@@ -23,7 +23,7 @@ const OtherProfilePageFavoriteFragmentLikesItem = (props) => {
             setOriginalTitle(result.original_title);
         })
 
-    console.log("OtherProfilePageFavoriteFragmentLikesItem props: ", props)
+    console.log("OtherProfilePageLikesItemFragment props: ", props)
 
     return (
         <Col key={props.index} lg={6} md={8} xs={24}>
@@ -38,4 +38,4 @@ const OtherProfilePageFavoriteFragmentLikesItem = (props) => {
 
 }
 
-export default OtherProfilePageFavoriteFragmentLikesItem
+export default OtherProfilePageLikesItemFragment
