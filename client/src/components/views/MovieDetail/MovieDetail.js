@@ -16,8 +16,12 @@ import { Button } from '@material-ui/core';
 import TrailerButton from "./TrailerButton";
 import FavoritedUsers from "./Sections/FavoritedUsers";
 import MovieCards from "../../cards/MovieCards";
+import {useSelector} from "react-redux";
 
 const MovieDetailPage = (props) => {
+
+    const user = useSelector(state => state.user)
+
     const movieId = props.match.params.movieId
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])

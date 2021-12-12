@@ -1,6 +1,7 @@
 const { User } = require("../models/User");
 
 const { auth } = require("../middleware/auth");
+const {PremiumUser} = require("../models/PremiumUser");
 
 //=================================
 //             Users
@@ -39,8 +40,27 @@ module.exports = (app) => {
     });
 
     app.post("/api/users/register", (req, res) => {
+
+        // const user = new User(req.body);
+        // console.log("register req.body: ", req.body);
+        // user.save((err, doc) => {
+        //     if (err) console.log("user save failed, or was not premiumUser")
+        //     else console.log("user saved")
+        // });
+        //
+
         const user = new User(req.body);
-        console.log(req.body);
+
+        if (req.body.role === '1') {
+            const premiumUser = new PremiumUser({'userFrom': user});
+            console.log("register premiumUser req.body: ", req.body);
+            premiumUser.save((err, doc) => {
+                if (err) console.log("premiumUser save failed, or was not premiumUser")
+                else console.log("premiumUser saved")
+            });
+        }
+
+        console.log("register req.body: ", req.body);
         user.save((err, doc) => {
             if (err) return res.json({success: false, err});
             return res.status(200).json({

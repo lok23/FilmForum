@@ -10,12 +10,13 @@ import ProfilePageDislikesListFragment from "./ProfilePageDislikesListFragment";
 const ProfilePage = () => {
 
     // wanted to use useSelector, but it's too fast and as a result user is undefined. :(
-    // const user = useSelector(state => state.user)
+    const user = useSelector(state => state.user)
 
     // our work-around solution
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [role, setRole] = useState("");
+    const [trailersClicked, setTrailersClicked] = useState(0);
     // apparently useful?
     axios.defaults.withCredentials = true;
     useEffect(() => {
@@ -30,6 +31,21 @@ const ProfilePage = () => {
                 setRole(response.data.role)
             }
         })
+
+        let variable = { userFrom: localStorage.getItem('userId') }
+
+
+        axios.post('/api/premium_user/getTrailersClick', variable)
+            .then(response => {
+                if (response.data.success) {
+                    console.log("getTrailerClick");
+                    console.log("getTrailerClick response.data: ", response.data);
+                    setTrailersClicked(response.data.result.length);
+                } else {
+                    console.log("not premium user!")
+                }
+            })
+
     }, [])
 
     // should refactor this lazy code as soon as possible
@@ -49,6 +65,11 @@ const ProfilePage = () => {
                 <p>email: {email}</p>
                 <p>name: {name}</p>
                 <p>role: {actualRole}</p>
+                {
+                    role == 1 ?
+                        <p>Number of trailers watched: {trailersClicked-1}</p>
+                        : <span></span>
+                }
                 <Link to="profileEdit">
                     <button>Edit Profile</button>
                 </Link>

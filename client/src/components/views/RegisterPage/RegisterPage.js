@@ -80,7 +80,6 @@ const RegisterPage = (props) => {
             role: values.role,
             image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
           };
-
           dispatch(registerUser(dataToSubmit)).then(response => {
             if (response.payload.success) {
               props.history.push("/login");
@@ -198,7 +197,7 @@ const RegisterPage = (props) => {
               <Form.Item required label="role" hasFeedback>
                 <Input
                     id="role"
-                    placeholder="Pick 0 (user) or 1 (premium_user) or 2 (admin)"
+                    placeholder="Pick 0 (user) or 1 (premium user) or 2 (admin)"
                     type="role"
                     value={values.role}
                     onChange={handleChange}

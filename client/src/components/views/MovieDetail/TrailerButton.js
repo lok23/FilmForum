@@ -2,14 +2,38 @@ import {Link} from "react-router-dom";
 import React from "react";
 import {Button} from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
+import axios from "axios";
+import {useSelector} from "react-redux";
 
 const TrailerButton = (props) => {
 
+    const user = useSelector(state => state.user)
+
     const {role, trailer} = props;
+
+    console.log("trailerbutton");
+
+    const addToTrailersClicked = () => {
+        console.log("addToTrailersClicked");
+
+        const variables = {
+            userFrom: user.userData._id,
+        }
+
+        axios.post('/api/premium_user/addTrailerClick', variables)
+            .then(response => {
+                if (response.data.success) {
+                    console.log("saved addTrailerClick");
+                } else {
+                    alert('Failed to save Comment')
+                }
+            })
+    }
 
     if (role === 1 && trailer !== "") {
         return (
             <Button
+                onClick={addToTrailersClicked}
                 variant="contained"
                 startIcon={<YouTubeIcon/>}
                 color="secondary"
@@ -22,7 +46,7 @@ const TrailerButton = (props) => {
     } else if (trailer === "") {
         return (
             <Button
-                disabled="true"
+                disabled={true}
                 variant="contained"
                 startIcon={<YouTubeIcon/>}
                 color="secondary"
@@ -33,7 +57,7 @@ const TrailerButton = (props) => {
     } else {
         return (
             <Button
-                disabled="true"
+                disabled={true}
                 variant="contained"
                 startIcon={<YouTubeIcon/>}
                 color="secondary"
