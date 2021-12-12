@@ -12,9 +12,9 @@ const OtherUserItem = (props) => {
             <div style={{ position: 'relative' }}>
                 {/* take us to the OtherProfilePage */}
                 <Link to={{
-                    pathname: `/profile/${props.user.email}`,
-                    state: props.user.email}} >
-                    {props.user.email}
+                    pathname: `/profile/${props.user.name}`,
+                    state: props.user.name}} >
+                    {props.user.name}
                 </Link>
             </div>
         </Col>

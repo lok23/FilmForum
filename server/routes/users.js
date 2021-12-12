@@ -27,11 +27,11 @@ module.exports = (app) => {
     });
 
     // this returns a lot of information, maybe it should return only the important parts?
-    app.get("/api/users/peepee/:profileIDByEmail", (req, res) => {
+    app.get("/api/users/peepee/:profileIDByName", (req, res) => {
         // console.log("1st: ", User.find({email: "admin@gmail.com"}))
         // console.log("2nd: ", User.find({email: req.params.profileIDByEmail}))
-        console.log (req.params.profileIDByEmail)
-        User.findOne({email: req.params.profileIDByEmail}, (err, doc) => {
+        console.log (req.params.profileIDByName)
+        User.findOne({name: req.params.profileIDByName}, (err, doc) => {
             if (err) return res.json({success: false, err});
             console.log("3rd: ", doc)
             res.json(doc)
