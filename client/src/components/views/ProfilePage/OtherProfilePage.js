@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import OtherProfilePageFavoriteFragment from "./OtherProfilePageFavoriteFragment";
 import OtherProfilePageLikesListFragment from "./OtherProfilePageLikesListFragment";
 import {Button} from "@material-ui/core";
+import OtherProfilePageDislikesListFragment from "./OtherProfilePageDislikesListFragment";
 
 
 // Only make the request if the property user in userData is defined.
@@ -79,6 +80,9 @@ const OtherProfilePage = (props) => {
                 </div>
                 <div>
                     <OtherProfilePageLikesListFragment/>
+                </div>
+                <div>
+                    <OtherProfilePageDislikesListFragment/>
                 </div>
             </div>
 

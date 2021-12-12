@@ -87,7 +87,7 @@ const ProfilePageFavoriteFragment = () => {
 
     return (
         <div style={{ width: '25%'}}>
-            <Title level={2} > Favorite Movies By Me </Title>
+            <Title level={2} > My favorite movies </Title>
             <hr />
             {
                 <table>

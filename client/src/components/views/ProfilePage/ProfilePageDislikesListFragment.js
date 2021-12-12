@@ -6,13 +6,11 @@ import axios from "axios";
 import {API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, NO_IMG, POSTER_SIZE, USER_SERVER} from "../../Config";
 import ProfilePageLikesItemFragment from "./ProfilePageLikesItemFragment";
 import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import ProfilePageDislikesItemFragment from "./ProfilePageDislikesItemFragment";
 
-const ProfilePageLikesListFragment = (props) => {
+const ProfilePageDislikesListFragment = (props) => {
 
-    const user = useSelector(state => state.user);
-
-    const [likes, setLikes] = useState([]);
+    const [dislikes, setDislikes] = useState([]);
 
     const params = useParams();
     console.log("PARAMS: ", params)
@@ -36,31 +34,31 @@ const ProfilePageLikesListFragment = (props) => {
 
     console.log("peepee profileId: ", profileId);
 
+
     const variable = { userFrom: localStorage.getItem('userId') }
 
-
     useEffect(() => {
-        axios.post('/api/like/getUserLikes', variable)
+        axios.post('/api/like/getUserDislikes', variable)
             .then(response => {
                 if (response.data.success) {
-                    console.log("getUserLikes response.data: ", response.data)
-                    setLikes(response.data.likes)
+                    console.log("getUserDislikes response.data: ", response.data)
+                    setDislikes(response.data.likes) // unfortunately named
                 } else {
-                    alert('Failed to get likes')
+                    alert('Failed to get dislikes')
                 }
             })
-    }, [likes])
+    }, [dislikes])
 
-    console.log("ProfilePageLikesListFragment likes: ", likes);
+    console.log("ProfilePageDislikesListFragment dislikes: ", dislikes);
 
     return (
         <div>
-            <Title level={2}>You liked:</Title>
+            <Title level={2}>You disliked:</Title>
             <hr/>
             <Row gutter={[16, 16]}>
-                {likes.map((page, index) => (
+                {dislikes.map((page, index) => (
                     <React.Fragment key={index}>
-                        <ProfilePageLikesItemFragment page={page}/>
+                        <ProfilePageDislikesItemFragment page={page}/>
                     </React.Fragment>
                 ))}
             </Row>
@@ -69,4 +67,4 @@ const ProfilePageLikesListFragment = (props) => {
     )
 }
 
-export default ProfilePageLikesListFragment
+export default ProfilePageDislikesListFragment

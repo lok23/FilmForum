@@ -60,6 +60,23 @@ module.exports = (app) => {
             })
     })
 
+    app.post("/api/like/getUserDislikes", (req, res) => {
+
+        console.log("getUserDislikes req.body: ", req.body);
+
+        // we're only looking for movies, not comments
+        const variable = {userId: req.body.userFrom, videoId:{ $exists: true}}
+
+        console.log("getUserDislikes variable: ", variable);
+
+        Dislike.find(variable)
+            // .populate('userId') // do not use .populate here it will break stuff!!!
+            .exec((err, likes) => {
+                if (err) return res.status(400).send(err);
+                res.status(200).json({success: true, likes})
+            })
+    })
+
 
     app.post("/api/like/upLike", (req, res) => {
 

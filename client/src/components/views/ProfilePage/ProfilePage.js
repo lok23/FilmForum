@@ -5,6 +5,7 @@ import {API_KEY, API_URL, USER_SERVER} from "../../Config";
 import {Link} from "react-router-dom";
 import ProfilePageFavoriteFragment from "./ProfilePageFavoriteFragment";
 import ProfilePageLikesListFragment from "./ProfilePageLikesListFragment";
+import ProfilePageDislikesListFragment from "./ProfilePageDislikesListFragment";
 
 const ProfilePage = () => {
 
@@ -55,6 +56,9 @@ const ProfilePage = () => {
             </div>
             <div>
                 <ProfilePageLikesListFragment/>
+            </div>
+            <div>
+                <ProfilePageDislikesListFragment/>
             </div>
         </div>
     );
