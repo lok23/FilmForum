@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import axios from "axios";
 import {API_KEY, API_URL, USER_SERVER} from "../../Config";
 import {Link} from "react-router-dom";
-import FavoriteFragment from "./FavoriteFragment";
+import ProfilePageFavoriteFragment from "./ProfilePageFavoriteFragment";
 
 const ProfilePage = () => {
 
@@ -49,7 +49,7 @@ const ProfilePage = () => {
             <Link to="profileEdit">
                 <button>Edit Profile</button>
             </Link>
-            <FavoriteFragment/>
+            <ProfilePageFavoriteFragment/>
         </div>
     );
 }

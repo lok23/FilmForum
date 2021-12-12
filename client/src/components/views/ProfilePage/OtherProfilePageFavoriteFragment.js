@@ -6,11 +6,12 @@ import {API_KEY, API_URL, IMAGE_BASE_URL, NO_IMG, POSTER_SIZE, USER_SERVER} from
 import {Link, useParams} from "react-router-dom";
 import MovieCards from "../../cards/MovieCards";
 import RecentPagesList from "../LandingPage/Sections/RecentPagesList";
-import FavoriteFragmentLikesList from "./FavoriteFragmentLikesList";
+import ProfilePageFavoriteFragmentLikesList from "./ProfilePageFavoriteFragmentLikesList";
+import OtherProfilePageFavoriteFragmentLikesList from "./OtherProfilePageFavoriteFragmentLikesList";
 
 const { Title } = Typography;
 
-const FavoriteFragment = () => {
+const OtherProfilePageFavoriteFragment = () => {
     const params = useParams();
     console.log("PARAMS: ", params)
 
@@ -29,23 +30,15 @@ const FavoriteFragment = () => {
             }
 
         })
-    }, [])
+        fetchFavoredMovie()
+    }, [profileId])
 
     console.log("peepee profileId: ", profileId);
     const [Favorites, setFavorites] = useState([]);
 
-    let variable;
-    if (profileId === "") {
-        variable = { userFrom: localStorage.getItem('userId') }
-    } else {
-        variable = {userFrom: profileId};
-    }
+    const variable = {userFrom: profileId};
 
-    console.log("FAV F variable: ", variable);
-
-    useEffect(() => {
-        fetchFavoredMovie()
-    }, [Favorites])
+    console.log("variable: ", variable);
 
     const fetchFavoredMovie = () => {
         axios.post('/api/favorite/getFavoredMovie', variable)
@@ -58,8 +51,6 @@ const FavoriteFragment = () => {
                 }
             })
     }
-
-    console.log("FF Favorites: ", Favorites);
 
     const renderCards = Favorites.map((favorite, index) => {
         console.log("favorite: ", favorite);
@@ -98,9 +89,9 @@ const FavoriteFragment = () => {
                     </tbody>
                 </table>
             }
-            <FavoriteFragmentLikesList/>
+            <OtherProfilePageFavoriteFragmentLikesList/>
         </div>
     )
 }
 
-export default FavoriteFragment
+export default OtherProfilePageFavoriteFragment

@@ -3,7 +3,9 @@ import axios from "axios";
 import {USER_SERVER} from "../../Config";
 import {Link, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
-import FavoriteFragment from "./FavoriteFragment";
+
+import OtherProfilePageFavoriteFragment from "./OtherProfilePageFavoriteFragment";
+
 
 // Only make the request if the property user in userData is defined.
 // https://stackoverflow.com/questions/65980922/react-on-page-reload-receive-error-typeerror-cannot-read-property-x-of-undefi
@@ -61,13 +63,15 @@ const OtherProfilePage = (props) => {
                     click here go to your profile!
                 </div>
                 :
-                <div>
-                    Someone elses profile!
-                    <p>email: {email}</p>
-                    <p>name: {name}</p>
-                    <p>role: {actualRole}</p>
-                    <FavoriteFragment/>
-                </div>
+
+            <div>
+                Someone elses profile!
+                <p>email: {email}</p>
+                <p>name: {name}</p>
+                <p>role: {actualRole}</p>
+                <OtherProfilePageFavoriteFragment/>
+            </div>
+
                 }
         </div>
     );

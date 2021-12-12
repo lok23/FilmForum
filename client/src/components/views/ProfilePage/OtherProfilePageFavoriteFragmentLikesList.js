@@ -3,17 +3,17 @@ import {Row} from "antd";
 import Title from "antd/es/typography/Title";
 import axios from "axios";
 import {API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, NO_IMG, POSTER_SIZE, USER_SERVER} from "../../Config";
-import FavoriteFragmentLikesItem from "./FavoriteFragmentLikesItem";
+import ProfilePageFavoriteFragmentLikesItem from "./ProfilePageFavoriteFragmentLikesItem";
 import {useParams} from "react-router-dom";
 
-const FavoriteFragmentLikesList = (props) => {
-
-    const [likes, setLikes] = useState([]);
+const OtherProfilePageFavoriteFragmentLikesList = (props) => {
 
     const params = useParams();
     console.log("PARAMS: ", params)
 
     const [profileId, setProfileId] = useState("");
+    const [likes, setLikes] = useState([]);
+
     axios.defaults.withCredentials = true;
     useEffect(() => {
         axios.get(`${USER_SERVER}/peepee/${params.user}`).then((response) => {
@@ -28,18 +28,7 @@ const FavoriteFragmentLikesList = (props) => {
             }
 
         })
-    }, [])
 
-    console.log("peepee profileId: ", profileId);
-
-    let variable;
-    if (profileId === "") {
-        variable = { userFrom: localStorage.getItem('userId') }
-    } else {
-        variable = {userFrom: profileId};
-    }
-
-    useEffect(() => {
         axios.post('/api/like/getUserLikes', variable)
             .then(response => {
                 if (response.data.success) {
@@ -49,9 +38,13 @@ const FavoriteFragmentLikesList = (props) => {
                     alert('Failed to get likes')
                 }
             })
-    }, [likes])
+    }, [profileId])
 
-    console.log("FavoriteFragmentLikesList likes: ", likes);
+    console.log("Other peepee profileId: ", profileId);
+
+    const variable = {userFrom: profileId};
+
+    console.log("OtherProfilePageFavoriteFragmentLikesList likes: ", likes);
 
     return (
         <div>
@@ -60,7 +53,7 @@ const FavoriteFragmentLikesList = (props) => {
             <Row gutter={[16, 16]}>
                 {likes.map((page, index) => (
                     <React.Fragment key={index}>
-                        <FavoriteFragmentLikesItem page={page}/>
+                        <ProfilePageFavoriteFragmentLikesItem page={page}/>
                     </React.Fragment>
                 ))}
             </Row>
@@ -69,4 +62,4 @@ const FavoriteFragmentLikesList = (props) => {
     )
 }
 
-export default FavoriteFragmentLikesList
+export default OtherProfilePageFavoriteFragmentLikesList
