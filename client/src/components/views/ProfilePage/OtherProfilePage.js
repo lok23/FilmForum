@@ -73,7 +73,7 @@ const OtherProfilePage = (props) => {
             <div>
                 <div>
                     Someone elses profile!
-                    <p>email: {email}</p>
+                    <p>email: ********</p>
                     <p>name: {name}</p>
                     <p>role: {actualRole}</p>
                     <OtherProfilePageFavoriteFragment/>

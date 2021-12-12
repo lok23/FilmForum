@@ -15,9 +15,9 @@ const FavoritedUsers = (props) => {
         <div>
             {/* take us to the OtherProfilePage */}
             <Link to={{
-                pathname: `/profile/${props.favorited.userFrom.email}`,
-                state: props.favorited.userFrom.email}} >
-                {props.favorited.userFrom.email}
+                pathname: `/profile/${props.favorited.userFrom.name}`,
+                state: props.favorited.userFrom.name}} >
+                {props.favorited.userFrom.name}
             </Link>
         </div>
     )

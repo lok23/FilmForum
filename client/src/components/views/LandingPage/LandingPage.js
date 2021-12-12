@@ -13,6 +13,8 @@ import RightMenu from "../NavBar/Sections/RightMenu";
 import MovieCards from "../../cards/MovieCards";
 import Modal from "../../modal/Modal";
 import RecentPagesList from "./Sections/RecentPagesList";
+import {Button, TextField} from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 
 
 const { Title } = Typography;
@@ -72,20 +74,26 @@ const LandingPage = () => {
     }
         return (
         <div className="container">
-            <div className="header">
+            <div className="header search-landingpage">
                 <div>
-                    <input className="search"
-                           type="search"
-                           placeholder="Search Movies..."
-                           value={searchTerm}
-                           onChange={handleOnChange}
+                    <TextField
+                        size="small"
+                        label="Search Movies"
+                        variant="outlined"
+                        className="search"
+                        type="search"
+                        placeholder="Search Movies..."
+                        value={searchTerm}
+                        onChange={handleOnChange}
                     />
                     {/* can't search with an empty search bar, so disabled = searchTerm.length === 0 */}
-                    <Link to={{
-                        pathname: `/searchpage/${searchTerm}`,
-                        state: {searchTerm: searchTerm}
-                    }} disabled={searchTerm.length === 0} className="btn btn-primary">SEARCH!
-                    </Link>
+                    <Button className="search-button" variant="outlined" startIcon={<SearchIcon />} >
+                        <Link to={{
+                            pathname: `/searchpage/${searchTerm}`,
+                            state: {searchTerm: searchTerm}
+                        }} disabled={searchTerm.length === 0} className="btn btn-primary">SEARCH!
+                        </Link>
+                    </Button>
                 </div>
                 {/* hide profile option if not logged in, empty <div></div> is intentional. */}
                 {role === -1 ?

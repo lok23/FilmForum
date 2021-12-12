@@ -9,6 +9,15 @@
     padding: 4px;
 }
 
+.search-landingpage {
+    padding: 10px;
+}
+
+.search-button {
+    margin-top: 2px;
+    margin-left: 4px;
+}
+
 .inner-container {
     width: 85%;
     margin: 1rem auto;
