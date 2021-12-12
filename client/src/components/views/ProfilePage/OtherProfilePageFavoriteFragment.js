@@ -89,7 +89,6 @@ const OtherProfilePageFavoriteFragment = () => {
                     </tbody>
                 </table>
             }
-            <OtherProfilePageFavoriteFragmentLikesList/>
         </div>
     )
 }

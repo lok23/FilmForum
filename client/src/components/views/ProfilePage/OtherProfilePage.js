@@ -5,6 +5,7 @@ import {Link, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 import OtherProfilePageFavoriteFragment from "./OtherProfilePageFavoriteFragment";
+import OtherProfilePageFavoriteFragmentLikesList from "./OtherProfilePageFavoriteFragmentLikesList";
 
 
 // Only make the request if the property user in userData is defined.
@@ -65,11 +66,16 @@ const OtherProfilePage = (props) => {
                 :
 
             <div>
-                Someone elses profile!
-                <p>email: {email}</p>
-                <p>name: {name}</p>
-                <p>role: {actualRole}</p>
-                <OtherProfilePageFavoriteFragment/>
+                <div>
+                    Someone elses profile!
+                    <p>email: {email}</p>
+                    <p>name: {name}</p>
+                    <p>role: {actualRole}</p>
+                    <OtherProfilePageFavoriteFragment/>
+                </div>
+                <div>
+                    <OtherProfilePageFavoriteFragmentLikesList/>
+                </div>
             </div>
 
                 }

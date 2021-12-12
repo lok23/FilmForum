@@ -5,6 +5,7 @@ import axios from "axios";
 import {API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, NO_IMG, POSTER_SIZE, USER_SERVER} from "../../Config";
 import ProfilePageFavoriteFragmentLikesItem from "./ProfilePageFavoriteFragmentLikesItem";
 import {useParams} from "react-router-dom";
+import OtherProfilePageFavoriteFragmentLikesItem from "./OtherProfilePageFavoriteFragmentLikesItem";
 
 const OtherProfilePageFavoriteFragmentLikesList = (props) => {
 
@@ -53,7 +54,7 @@ const OtherProfilePageFavoriteFragmentLikesList = (props) => {
             <Row gutter={[16, 16]}>
                 {likes.map((page, index) => (
                     <React.Fragment key={index}>
-                        <ProfilePageFavoriteFragmentLikesItem page={page}/>
+                        <OtherProfilePageFavoriteFragmentLikesItem page={page}/>
                     </React.Fragment>
                 ))}
             </Row>
