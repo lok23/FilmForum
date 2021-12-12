@@ -3,9 +3,9 @@ import {Row} from "antd";
 import Title from "antd/es/typography/Title";
 import axios from "axios";
 import {API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, NO_IMG, POSTER_SIZE} from "../../Config";
-import FavoriteFragmentLikesItem from "./FavoriteFragmentLikesItem";
+import ProfilePageFavoriteFragmentLikesItem from "./ProfilePageFavoriteFragmentLikesItem";
 
-const FavoriteFragmentLikesList = (props) => {
+const ProfilePageFavoriteFragmentLikesList = (props) => {
 
     const [likes, setLikes] = useState([]);
 
@@ -23,7 +23,7 @@ const FavoriteFragmentLikesList = (props) => {
             })
     }, [])
 
-    console.log("FavoriteFragmentLikesList likes: ", likes);
+    console.log("ProfilePageFavoriteFragmentLikesList likes: ", likes);
 
     return (
         <div>
@@ -32,7 +32,7 @@ const FavoriteFragmentLikesList = (props) => {
             <Row gutter={[16, 16]}>
                 {likes.map((page, index) => (
                     <React.Fragment key={index}>
-                        <FavoriteFragmentLikesItem page={page}/>
+                        <ProfilePageFavoriteFragmentLikesItem page={page}/>
                     </React.Fragment>
                 ))}
             </Row>
@@ -41,4 +41,4 @@ const FavoriteFragmentLikesList = (props) => {
     )
 }
 
-export default FavoriteFragmentLikesList
+export default ProfilePageFavoriteFragmentLikesList
