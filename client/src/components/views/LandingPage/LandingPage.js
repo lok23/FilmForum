@@ -15,8 +15,7 @@ import Modal from "../../modal/Modal";
 import RecentPagesList from "./Sections/RecentPagesList";
 import {Button, TextField} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-
-
+import AccountBoxIcon from  "@material-ui/icons/AccountBox";
 const { Title } = Typography;
 
 const LandingPage = () => {
@@ -86,26 +85,31 @@ const LandingPage = () => {
                         value={searchTerm}
                         onChange={handleOnChange}
                     />
+                    <span className="search-button">
                     {/* can't search with an empty search bar, so disabled = searchTerm.length === 0 */}
-                    <Button className="search-button" variant="outlined" startIcon={<SearchIcon />} >
+                    {/*    height is set so TextField and Button are same height*/}
+                    <Button style={{ "height": "40px", width: "30%" }} variant="outlined" startIcon={<SearchIcon />} >
                         <Link to={{
                             pathname: `/searchpage/${searchTerm}`,
                             state: {searchTerm: searchTerm}
                         }} disabled={searchTerm.length === 0} className="btn btn-primary">SEARCH!
                         </Link>
                     </Button>
+                    </span>
                 </div>
                 {/* hide profile option if not logged in, empty <div></div> is intentional. */}
                 {role === -1 ?
                     <div></div>
                     :
-                    <Link to={{
-                        pathname: `/profile`
-                    }} className="btn btn-primary">PROFILE
-                    </Link>
+                    <Button style={{ "height": "40px" }} variant="outlined" startIcon={<AccountBoxIcon />} >
+                        <Link to={{
+                            pathname: `/profile`
+                        }} className="btn btn-primary">PROFILE
+                        </Link>
+                    </Button>
                 }
             </div>
-            ${role}, NOTLOGGED(-1) / USER(0) / MODERATOR(1) / ADMIN(2)
+            ${role}, NOTLOGGED(-1) / USER(0) / PREMIUM USER(1) / ADMIN(2)
             {MainMovieImage &&
             <MainImage
                 image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}

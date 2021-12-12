@@ -198,7 +198,7 @@ const RegisterPage = (props) => {
               <Form.Item required label="role" hasFeedback>
                 <Input
                     id="role"
-                    placeholder="Pick 0 (user) or 1 (moderator) or 2 (admin)"
+                    placeholder="Pick 0 (user) or 1 (premium_user) or 2 (admin)"
                     type="role"
                     value={values.role}
                     onChange={handleChange}

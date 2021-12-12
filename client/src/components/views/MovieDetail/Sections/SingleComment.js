@@ -88,15 +88,15 @@ const SingleComment = (props) => {
 
     const commentFlair = [
         props.comment.writer.name, // users are commentFlair[0]
-        <span>{props.comment.writer.name} &#x2611; (moderator)</span>, // moderators are commentFlair[1]
+        <span>{props.comment.writer.name} &#x2611; (Premium User)</span>, // moderators are commentFlair[1]
         <span>{props.comment.writer.name} &#11088; (ADMIN)</span> // admins are commentFlair[2]
     ]
 
 
 
-    // users get plain comments, moderators/admins get special comments
+    // users get plain comments, premium users/admins get special comments
     // if props.comment.role == '0', they are a user
-    // if props.comment.role == '1', they are a moderator
+    // if props.comment.role == '1', they are a premium user
     // if props.comment.role == '2', they are an admin
     return (
         <div>

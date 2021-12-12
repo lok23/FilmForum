@@ -50,7 +50,7 @@ const OtherProfilePage = (props) => {
     if (role == 0) {
         actualRole = "user"
     } else if (role == 1) {
-        actualRole = "moderator"
+        actualRole = "premium_user"
     } else {
         actualRole = "admin"
     }

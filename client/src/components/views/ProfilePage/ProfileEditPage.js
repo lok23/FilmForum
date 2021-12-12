@@ -87,7 +87,7 @@ const ProfileEditPage = () => {
                         name="role"
                         checked={role === 1}
                     />
-                    Moderator
+                    Premium User
                 </label>
                 <label
                     className="radio-btn"
