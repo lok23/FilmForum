@@ -17,12 +17,11 @@ const ProfilePage = () => {
     const [name, setName] = useState("");
     const [role, setRole] = useState("");
     const [trailersClicked, setTrailersClicked] = useState(0);
-    // apparently useful?
+    const [commentsDeleted, setCommentsDeleted] = useState(0);
+
     axios.defaults.withCredentials = true;
     useEffect(() => {
-        // test role
         axios.get(`${USER_SERVER}/auth`).then((response) => {
-            // this might not work, double check
             if (response.data.role === undefined) {
                 alert("not logged in");
             } else {
@@ -43,6 +42,17 @@ const ProfilePage = () => {
                     setTrailersClicked(response.data.result.length);
                 } else {
                     console.log("not premium user!")
+                }
+            })
+
+        axios.post('/api/admin_user/getCommentsDeleted', variable)
+            .then(response => {
+                if (response.data.success) {
+                    console.log("getCommentsDeleted");
+                    console.log("getCommentsDeleted response.data: ", response.data);
+                    setCommentsDeleted(response.data.result.length);
+                } else {
+                    console.log("not admin user!")
                 }
             })
 
@@ -68,6 +78,11 @@ const ProfilePage = () => {
                 {
                     role == 1 ?
                         <p>Number of trailers watched: {trailersClicked-1}</p>
+                        : <span></span>
+                }
+                {
+                    role == 2 ?
+                        <p>Number of comments deleted: {commentsDeleted-1}</p>
                         : <span></span>
                 }
                 <Link to="profileEdit">

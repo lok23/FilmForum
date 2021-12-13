@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+require('./routes/admin_user')(app);
 require('./routes/premium_user')(app);
 require('./routes/recent_pages')(app);
 require('./routes/users')(app);

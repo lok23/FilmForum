@@ -67,6 +67,22 @@ const SingleComment = (props) => {
                     alert('Failed to delete Comment');
                 }
             })
+
+        const variable = {
+            userFrom: user.userData._id,
+        }
+
+        console.log("singlecomment deleted log");
+
+        axios.post('/api/admin_user/addCommentDeleted', variable)
+            .then(response => {
+                if (response.data.success) {
+                    console.log("saved addCommentDeleted");
+                } else {
+                    alert('Failed to save addCommentDeleted');
+                }
+            })
+
     }
 
     // if user is admin (ie props.userRole === 2), then they have the option to delete comments

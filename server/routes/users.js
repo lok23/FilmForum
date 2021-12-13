@@ -2,6 +2,7 @@ const { User } = require("../models/User");
 
 const { auth } = require("../middleware/auth");
 const {PremiumUser} = require("../models/PremiumUser");
+const {AdminUser} = require("../models/AdminUser");
 
 //=================================
 //             Users
@@ -57,6 +58,15 @@ module.exports = (app) => {
             premiumUser.save((err, doc) => {
                 if (err) console.log("premiumUser save failed, or was not premiumUser")
                 else console.log("premiumUser saved")
+            });
+        }
+
+        if (req.body.role === '2') {
+            const adminUser = new AdminUser({'userFrom': user});
+            console.log("register adminUser req.body: ", req.body);
+            adminUser.save((err, doc) => {
+                if (err) console.log("adminUser save failed, or was not adminUser")
+                else console.log("adminUser saved")
             });
         }
 
