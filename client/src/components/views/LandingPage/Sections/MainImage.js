@@ -1,5 +1,6 @@
 import React from 'react'
 import { Typography } from 'antd';
+import './MainImage.css'
 
 const { Title } = Typography;
 
@@ -21,9 +22,9 @@ const MainImage = (props) => {
             }}
         >
             <div>
-                <div style={{ position: 'absolute', maxWidth: '500px', bottom: '2rem', marginLeft: '2rem' }} >
+                <div className="both-container" >
                     <Title style={{ color: 'white' }} level={2} > {props.title} </Title>
-                    <p style={{ color: 'white', fontSize: '1rem' }}  >{props.text} </p>
+                    <p className="paragraphs-style"  >{props.text} </p>
                 </div>
             </div>
         </div>

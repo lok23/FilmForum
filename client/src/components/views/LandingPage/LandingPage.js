@@ -88,7 +88,7 @@ const LandingPage = () => {
                     <span className="search-button">
                     {/* can't search with an empty search bar, so disabled = searchTerm.length === 0 */}
                     {/*    height is set so TextField and Button are same height*/}
-                    <Button style={{ "height": "40px", width: "30%" }} variant="outlined" startIcon={<SearchIcon />} >
+                    <Button disabled={searchTerm.length === 0} style={{ "height": "40px", width: "30%" }} variant="outlined" startIcon={<SearchIcon />} >
                         <Link to={{
                             pathname: `/searchpage/${searchTerm}`,
                             state: {searchTerm: searchTerm}
@@ -109,7 +109,7 @@ const LandingPage = () => {
                     </Button>
                 }
             </div>
-            ${role}, NOTLOGGED(-1) / USER(0) / PREMIUM USER(1) / ADMIN(2)
+            {/*${role}, NOTLOGGED(-1) / USER(0) / PREMIUM USER(1) / ADMIN(2)*/}
             {MainMovieImage &&
             <MainImage
                 image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}

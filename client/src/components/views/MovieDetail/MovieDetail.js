@@ -66,7 +66,7 @@ const MovieDetailPage = (props) => {
                     if (response.data.success) {
                         console.log('response.data.comments', response.data.comments)
                     } else {
-                        alert('could not save this recentPage')
+                        // alert('could not save this recentPage')
                     }
                 })
         }
@@ -151,7 +151,7 @@ const MovieDetailPage = (props) => {
 
     return (
         <div>
-            {`the role, ${role}`}
+            {/*{`the role, ${role}`}*/}
             {/* Header */}
             {
                 <MainImage

@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import ProfilePageFavoriteFragment from "./ProfilePageFavoriteFragment";
 import ProfilePageLikesListFragment from "./ProfilePageLikesListFragment";
 import ProfilePageDislikesListFragment from "./ProfilePageDislikesListFragment";
+import { Button } from '@material-ui/core';
 
 const ProfilePage = () => {
 
@@ -70,8 +71,8 @@ const ProfilePage = () => {
 
     return (
         <div>
-            <div>
-                <h2>My profile page!</h2>
+            <div style={{ width: '95%', margin: '1rem auto' }}>
+                <h1>My profile page!</h1>
                 <p>email: {email}</p>
                 <p>name: {name}</p>
                 <p>role: {actualRole}</p>
@@ -86,14 +87,14 @@ const ProfilePage = () => {
                         : <span></span>
                 }
                 <Link to="profileEdit">
-                    <button>Edit Profile</button>
+                    <Button variant="contained" color="primary">Edit Profile</Button>
                 </Link>
                 <ProfilePageFavoriteFragment/>
             </div>
-            <div>
+            <div style={{ width: '95%', margin: '1rem auto' }}>
                 <ProfilePageLikesListFragment/>
             </div>
-            <div>
+            <div style={{ width: '95%', margin: '1rem auto' }}>
                 <ProfilePageDislikesListFragment/>
             </div>
         </div>

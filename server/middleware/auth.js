@@ -1,3 +1,5 @@
+// authentication checks that you are logged in (ie determine what to show user)
+// https://www.youtube.com/watch?v=gVRfTks0TUs&t=84s
 const { User } = require('../models/User');
 
 let auth = (req, res, next) => {

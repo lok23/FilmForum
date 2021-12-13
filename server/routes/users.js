@@ -11,7 +11,7 @@ module.exports = (app) => {
     app.get("/api/users/auth", auth, (req, res) => {
         res.status(200).json({
             _id: req.user._id,
-            isAdmin: req.user.role === 0 ? false : true, // probably not needed
+            isAdmin: req.user.role === 0 ? false : true, // not needed
             isAuth: true,
             email: req.user.email,
             name: req.user.name,
@@ -80,7 +80,7 @@ module.exports = (app) => {
     });
 
     app.post("/api/users/saveProfile", auth, (req, res) => {
-        User.findOneAndUpdate({_id: req.body._id}, {name: req.body.name, role: req.body.role},  (err, doc) => {
+        User.findOneAndUpdate({_id: req.body._id}, {name: req.body.name},  (err, doc) => {
             console.log(req.user)
             console.log(req.body)
             if (err) return res.json({success: false, err});

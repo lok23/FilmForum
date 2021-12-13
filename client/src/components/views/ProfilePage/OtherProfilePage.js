@@ -71,17 +71,17 @@ const OtherProfilePage = (props) => {
                 :
 
             <div>
-                <div>
-                    Someone elses profile!
+                <div style={{ width: '95%', margin: '1rem auto' }}>
+                    <h1>{name}'s profile!</h1>
                     <p>email: ********</p>
                     <p>name: {name}</p>
                     <p>role: {actualRole}</p>
                     <OtherProfilePageFavoriteFragment/>
                 </div>
-                <div>
+                <div style={{ width: '95%', margin: '1rem auto' }}>
                     <OtherProfilePageLikesListFragment/>
                 </div>
-                <div>
+                <div style={{ width: '95%', margin: '1rem auto' }}>
                     <OtherProfilePageDislikesListFragment/>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import {Link, withRouter} from "react-router-dom";
 import { loginUser } from "../../../_actions/user_actions";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Form, Icon, Input, Button, Checkbox, Typography } from 'antd';
+import { Form, Icon, Input, Button, Typography } from 'antd';
 import { useDispatch } from "react-redux";
 
 const { Title } = Typography;

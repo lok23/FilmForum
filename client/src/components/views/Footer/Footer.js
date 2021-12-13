@@ -1,14 +1,10 @@
 import React from 'react'
-import {Icon} from 'antd';
 import {Link} from "react-router-dom";
+import './Footer.css'
 
 const Footer = () => {
     return (
-        <div style={{
-            height: '80px', display: 'flex',
-            flexDirection: 'column', alignItems: 'center',
-            justifyContent: 'center', fontSize:'1rem'
-        }}>
+        <div className="footer">
             <Link to="/privacyPolicyPage">Privacy Policy</Link>
         </div>
     )

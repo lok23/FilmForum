@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { auth } from '../_actions/user_actions';
 import { useSelector, useDispatch } from "react-redux";
 
-// We need middleware so we can return functions
+// We need to check our authentications
 export default function (ComposedClass, reload) {
     function AuthenticationCheck(props) {
 
