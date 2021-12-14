@@ -57,9 +57,9 @@ const ProfilePageDislikesListFragment = (props) => {
             <hr/>
             <Row gutter={[16, 16]}>
                 {dislikes.map((page, index) => (
-                    <React.Fragment key={index}>
+                    <div key={index}>
                         <ProfilePageDislikesItemFragment page={page}/>
-                    </React.Fragment>
+                    </div>
                 ))}
             </Row>
             <br/>

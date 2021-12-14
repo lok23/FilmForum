@@ -29,7 +29,7 @@ const ProfilePageLikesItemFragment = (props) => {
         <Col key={props.index} lg={6} md={8} xs={24}>
             <div style={{ position: 'relative' }}>
                 {/* take us to the moviedetail page */}
-                <Link to={`/movie/${page.movieId}`} >
+                <Link to={`/movie/${page.videoId}`} >
                     <img alt={originalTitle} src={`${IMAGE_BASE_URL}w154${posterPath}`}/>
                 </Link>
             </div>
