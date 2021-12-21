@@ -31,6 +31,17 @@ This app has 6 major pages:
 ## Purpose
 The purpose of this project was to put everything we had learned about in the past 10 weeks (HTML, CSS, Bootstrap, Javascript, JQuery, React, Redux, Node + API calls, MongoDB) into practical use by creating a real, dynamic website. The website would not only act as proof of our understanding, but also serve as a nice project for recruiters and future bosses to look at.
 
+## How to Run
+
+First you need to make a cloud mongoDB account: https://www.mongodb.com/cloud/atlas/signup
+
+Once you have an account, you will:
+
+1) make a dev.js file inside config folder
+2) copy mongoDB server information into dev.js file
+3) Type " npm install " inside the root directory (Download Server Dependencies)
+4) Type " npm install " inside the client directory (Download Front-end Dependencies)
+
 ## Credits
 All credits to:
 
