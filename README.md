@@ -1,6 +1,7 @@
 # FILMFORUM
 A Project for CS5610 Web Development.
-<iframe width="560" height="315" src="https://www.youtube.com/embed/aU5J4Er21HE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+![image](https://user-images.githubusercontent.com/45181211/146998889-dccb3081-a46d-4b06-8dfd-c51f83b3b5ee.png)(https://www.youtube.com/watch?v=aU5J4Er21HE)
+
 
 <br>
 FILMFORUM is a MERN (MongoDB, Express.js, React, Node.js) stack application. It is a movie chat website similar to IMDb's boards where users can search for movies, like/dislike movies, leave comments, respond to comments, and checkout other user's profiles to see what they're interested in.
