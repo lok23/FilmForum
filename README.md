@@ -3,7 +3,7 @@
 <br>
 A Project for CS5610 Web Development.
 
-FILMFORUM is a MERN (MongoDB, Express.js, React, Node.js) stack application. It is a movie chat website similar to IMDb's boards where users can search for movies, like/dislike movies, leave comments, respond to comments, and checkout other user's profiles to see what they're interested in.
+FILMFORUM is a MERN (MongoDB, Express.js, React, Node.js) stack application. It is a movie chat website similar to IMDb's boards where users can search for movies, like/dislike movies, leave comments, respond to comments, and checkout other user's profiles to see what they're interested in. It uses The Movie Database API to retrieve information about the movies.
 
 ## Functionality
 **This app has all the functionalities listed here:** https://docs.google.com/document/d/1De-UdZ8LpJt6tftlCsYcZz-BCyh8Nljz7KYO5DY00_8/edit#
@@ -27,9 +27,9 @@ This app has 6 major pages:
 
 ## 6) Other User's Profile Page
 ![image](https://user-images.githubusercontent.com/45181211/146998484-6c134cd2-45a0-4cbc-83be-97064a0d6875.png)
- 
 
-
+## Purpose
+The purpose of this project was to put everything we had learned about in the past 10 weeks (HTML, CSS, Bootstrap, Javascript, JQuery, React, Redux, Node + API calls, MongoDB) into practical use by creating a real, dynamic website. The website would not only act as proof of our understanding, but also serve as a nice project for recruiters and future bosses to look at.
 
 ## Credits
 All credits to:
