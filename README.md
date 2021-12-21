@@ -1,7 +1,8 @@
 # FILMFORUM
 A Project for CS5610 Web Development.
-<hr>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aU5J4Er21HE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+<br>
 FILMFORUM is a MERN (MongoDB, Express.js, React, Node.js) stack application. It is a movie chat website similar to IMDb's boards where users can search for movies, like/dislike movies, leave comments, respond to comments, and checkout other user's profiles to see what they're interested in.
 
 ## Functionality
@@ -9,28 +10,24 @@ FILMFORUM is a MERN (MongoDB, Express.js, React, Node.js) stack application. It 
 <br>
 This app has 6 major pages:
 <br>
-1) Home Page 
+## 1) Home Page 
 ![image](https://user-images.githubusercontent.com/45181211/146998088-54e4c1c8-f31d-47af-be11-5f5fb82c1332.png)
 
-2) Login/Signup Page
+## 2) Login/Signup Page
 ![image](https://user-images.githubusercontent.com/45181211/146998222-79df0e9c-b456-4560-adf5-b0d9515e3795.png)
 
-3) Search Page
+## 3) Search Page
 ![image](https://user-images.githubusercontent.com/45181211/146998266-410d9ce5-13c8-4f64-aa86-8c7e72049403.png)
 
-4) Details Page
+## 4) Details Page
 ![image](https://user-images.githubusercontent.com/45181211/146998356-502b27c7-6919-4a9e-bc5c-968855f08e63.png)
 
-5) Profile Page
+## 5) Profile Page
 ![image](https://user-images.githubusercontent.com/45181211/146998395-96c0b7d1-364a-43ed-81b1-efd463b2607c.png)
 
-6) Other User's Profile Page
+## 6) Other User's Profile Page
 ![image](https://user-images.githubusercontent.com/45181211/146998484-6c134cd2-45a0-4cbc-83be-97064a0d6875.png)
  
-
-
-
-Youtube link: https://www.youtube.com/watch?v=aU5J4Er21HE
 
 
 
